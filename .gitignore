@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+dist/
+.output/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+dist/
+.nitro/
+.cache/
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
