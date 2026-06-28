@@ -436,14 +436,14 @@ function About({ onAvatarClick }: { onAvatarClick?: () => void }) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <SectionTag>About</SectionTag>
-          <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-            Engineer obsessed with the <span className="text-gradient-gold">craft</span> of shipping software.
-          </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-8 sm:mt-12 xl:grid-cols-[3fr_2fr]">
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.6fr_1fr] items-start">
           <Reveal delay={0.05}>
             <div className="flex flex-col gap-6">
+              <h2 className="font-display text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+                Engineer obsessed with the <span className="text-gradient-gold">craft</span> of shipping software.
+              </h2>
               <div>
                 <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                   I'm Mohammed Fahaman — a Full Stack developer from Bhatkal, India. I specialise
