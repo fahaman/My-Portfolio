@@ -37,7 +37,22 @@ const NAV = [
   { id: "contact", label: "Contact" },
 ];
 
-const PROFILE_IMAGES = ["/fahaman.jpeg", "/fahaman2.jpeg"];
+const PROFILE_IMAGES = [
+  "/fahaman.jpeg",
+  "/fahaman2.jpeg",
+  "/photos/IMG_1182.jpg",
+  "/photos/IMG_1277.jpg",
+  "/photos/IMG_1332.jpg",
+  "/photos/IMG_1528.jpg",
+  "/photos/IMG_1563.jpg",
+  "/photos/IMG_2230.jpg",
+  "/photos/IMG_2486.jpg",
+  "/photos/IMG_3836.jpg",
+  "/photos/IMG_3837.jpg",
+  "/photos/PXL_20260528_124023499.PORTRAIT.jpeg",
+  "/photos/PXL_20260528_124536972.PORTRAIT.jpeg",
+  "/photos/PXL_20260528_124539384.PORTRAIT.jpeg",
+];
 
 interface ProfileLightboxProps {
   activeIndex: number;
