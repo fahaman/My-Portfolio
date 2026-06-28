@@ -134,9 +134,9 @@ function Portfolio() {
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <CursorGlow />
       <Nav onAvatarClick={() => openLightbox(0)} />
-      <Hero onAvatarClick={() => openLightbox(0)} />
+      <Hero />
       <Marquee />
-      <About />
+      <About onAvatarClick={() => openLightbox(0)} />
       <Skills />
       <Projects />
       <Experience />
@@ -256,37 +256,6 @@ function NavAvatar({ onClick }: { onClick?: () => void }) {
   );
 }
 
-function HeroAvatar({ onClick }: { onClick?: () => void }) {
-  const [error, setError] = useState(false);
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8 }}
-      onClick={onClick}
-      className="group mx-auto mb-6 flex h-28 w-28 cursor-pointer items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 p-1 shadow-lg shadow-primary/10 transition-all hover:border-primary hover:shadow-primary/25"
-    >
-      <div className="relative h-full w-full overflow-hidden rounded-full bg-primary/15 flex items-center justify-center">
-        {!error ? (
-          <>
-            <img
-              src="/fahaman.jpeg"
-              alt="Mohammed Fahaman"
-              className="h-full w-full object-cover transition duration-300 group-hover:scale-105 group-hover:blur-[2px]"
-              onError={() => setError(true)}
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <Maximize2 className="h-5 w-5 text-white" />
-            </div>
-          </>
-        ) : (
-          <span className="font-display text-4xl font-bold text-primary">F</span>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
 /* ---------------- NAV ---------------- */
 function Nav({ onAvatarClick }: { onAvatarClick?: () => void }) {
   const [open, setOpen] = useState(false);
@@ -334,7 +303,7 @@ function Nav({ onAvatarClick }: { onAvatarClick?: () => void }) {
 }
 
 /* ---------------- HERO ---------------- */
-function Hero({ onAvatarClick }: { onAvatarClick?: () => void }) {
+function Hero() {
   return (
     <section id="top" className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pt-24 sm:px-6">
       <div className="absolute inset-0 bg-grid opacity-60" />
@@ -348,7 +317,18 @@ function Hero({ onAvatarClick }: { onAvatarClick?: () => void }) {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
-        <HeroAvatar onClick={onAvatarClick} />
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary mb-6"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+          </span>
+          Available for Full-Stack &amp; AI Roles
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -444,7 +424,7 @@ function Marquee() {
 }
 
 /* ---------------- ABOUT ---------------- */
-function About() {
+function About({ onAvatarClick }: { onAvatarClick?: () => void }) {
   const stats = [
     { v: 200, suffix: "+", label: "Coding problems solved" },
     { v: 5, suffix: "+", label: "Full stack apps shipped" },
@@ -484,7 +464,28 @@ function About() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div>
+            <div className="flex flex-col gap-4">
+              <div
+                onClick={onAvatarClick}
+                className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] shadow-2xl transition hover:border-primary/40"
+              >
+                <img
+                  src="/fahaman.jpeg"
+                  alt="Mohammed Fahaman"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                  <div>
+                    <h3 className="font-display text-sm font-bold text-white">Mohammed Fahaman</h3>
+                    <p className="text-[10px] text-muted-foreground">Click to view gallery</p>
+                  </div>
+                  <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/20 text-primary backdrop-blur transition group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Maximize2 className="h-4 w-4" />
+                  </div>
+                </div>
+              </div>
+
               <div className="glass rounded-3xl p-6">
                 <div className="flex items-center gap-3">
                   <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary"><Sparkles className="h-5 w-5" /></div>
