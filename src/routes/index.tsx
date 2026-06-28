@@ -5,6 +5,7 @@ import {
   Code2, Database, Cloud, Brain, Wrench, Layers, Server,
   ExternalLink, Award, Trophy, Calendar, CheckCircle2, Send,
   Sun, Moon, Monitor, Palette, GraduationCap, BookOpen,
+  Instagram, Ghost, X, ChevronLeft, ChevronRight, Maximize2,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
@@ -36,12 +37,104 @@ const NAV = [
   { id: "contact", label: "Contact" },
 ];
 
+const PROFILE_IMAGES = ["/fahaman.jpeg", "/fahaman2.jpeg"];
+
+interface ProfileLightboxProps {
+  activeIndex: number;
+  onClose: () => void;
+  onChangeIndex: (index: number) => void;
+}
+
+function ProfileLightbox({ activeIndex, onClose, onChangeIndex }: ProfileLightboxProps) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") {
+        onChangeIndex((activeIndex + 1) % PROFILE_IMAGES.length);
+      }
+      if (e.key === "ArrowLeft") {
+        onChangeIndex((activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [activeIndex, onClose, onChangeIndex]);
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md">
+      <div className="absolute inset-0 cursor-zoom-out" onClick={onClose} />
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 z-10 grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white backdrop-blur transition hover:bg-white/20 hover:scale-105"
+        aria-label="Close lightbox"
+      >
+        <X className="h-5 w-5" />
+      </button>
+      <div className="relative z-10 flex max-h-[85vh] max-w-[95vw] items-center justify-center">
+        <motion.img
+          key={activeIndex}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          src={PROFILE_IMAGES[activeIndex]}
+          alt={`Mohammed Fahaman - Profile ${activeIndex + 1}`}
+          className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl border border-white/10"
+        />
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onChangeIndex((activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length);
+          }}
+          className="absolute left-4 z-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-black/40 text-white backdrop-blur transition hover:bg-black/60 hover:scale-105 sm:left-6"
+          aria-label="Previous image"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onChangeIndex((activeIndex + 1) % PROFILE_IMAGES.length);
+          }}
+          className="absolute right-4 z-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-black/40 text-white backdrop-blur transition hover:bg-black/60 hover:scale-105 sm:right-6"
+          aria-label="Next image"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
+      </div>
+      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+        {PROFILE_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => onChangeIndex(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              activeIndex === i ? "w-6 bg-primary" : "w-2 bg-white/30 hover:bg-white/50"
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Portfolio() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  const openLightbox = (index = 0) => {
+    setActiveImageIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <CursorGlow />
-      <Nav />
-      <Hero />
+      <Nav onAvatarClick={() => openLightbox(0)} />
+      <Hero onAvatarClick={() => openLightbox(0)} />
       <Marquee />
       <About />
       <Skills />
@@ -52,6 +145,13 @@ function Portfolio() {
       <Achievements />
       <Contact />
       <Footer />
+      {lightboxOpen && (
+        <ProfileLightbox
+          activeIndex={activeImageIndex}
+          onClose={() => setLightboxOpen(false)}
+          onChangeIndex={setActiveImageIndex}
+        />
+      )}
     </div>
   );
 }
@@ -135,14 +235,66 @@ function ThemeSelector() {
   );
 }
 
+function NavAvatar({ onClick }: { onClick?: () => void }) {
+  const [error, setError] = useState(false);
+  return (
+    <span
+      onClick={onClick}
+      className="grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-full bg-primary text-primary-foreground font-bold cursor-pointer transition hover:scale-105"
+    >
+      {!error ? (
+        <img
+          src="/fahaman.jpeg"
+          alt="Mohammed Fahaman"
+          className="h-full w-full object-cover"
+          onError={() => setError(true)}
+        />
+      ) : (
+        "F"
+      )}
+    </span>
+  );
+}
+
+function HeroAvatar({ onClick }: { onClick?: () => void }) {
+  const [error, setError] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8 }}
+      onClick={onClick}
+      className="group mx-auto mb-6 flex h-28 w-28 cursor-pointer items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 p-1 shadow-lg shadow-primary/10 transition-all hover:border-primary hover:shadow-primary/25"
+    >
+      <div className="relative h-full w-full overflow-hidden rounded-full bg-primary/15 flex items-center justify-center">
+        {!error ? (
+          <>
+            <img
+              src="/fahaman.jpeg"
+              alt="Mohammed Fahaman"
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-105 group-hover:blur-[2px]"
+              onError={() => setError(true)}
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <Maximize2 className="h-5 w-5 text-white" />
+            </div>
+          </>
+        ) : (
+          <span className="font-display text-4xl font-bold text-primary">F</span>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 /* ---------------- NAV ---------------- */
-function Nav() {
+function Nav({ onAvatarClick }: { onAvatarClick?: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-4 sm:pt-4">
       <nav className="glass-strong flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-2.5 sm:px-6">
         <a href="#top" className="flex items-center gap-2 font-display text-sm font-semibold tracking-tight">
-          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground font-bold">F</span>
+          <NavAvatar onClick={onAvatarClick} />
           <span className="hidden sm:inline">Mohammed Fahaman</span>
         </a>
         <ul className="hidden items-center gap-1 lg:flex">
@@ -182,7 +334,7 @@ function Nav() {
 }
 
 /* ---------------- HERO ---------------- */
-function Hero() {
+function Hero({ onAvatarClick }: { onAvatarClick?: () => void }) {
   return (
     <section id="top" className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pt-24 sm:px-6">
       <div className="absolute inset-0 bg-grid opacity-60" />
@@ -196,6 +348,7 @@ function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
+        <HeroAvatar onClick={onAvatarClick} />
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -245,6 +398,8 @@ function Hero() {
         >
           <Social href="https://github.com/fahaman" icon={<Github className="h-4 w-4" />} label="GitHub" />
           <Social href="https://linkedin.com/in/mohammed-fahaman" icon={<Linkedin className="h-4 w-4" />} label="LinkedIn" />
+          <Social href="https://www.instagram.com/mohammed_fahaman/" icon={<Instagram className="h-4 w-4" />} label="Instagram" />
+          <Social href="https://www.snapchat.com/add/fahamxn" icon={<Ghost className="h-4 w-4" />} label="Snapchat" />
           <Social href="mailto:mohammedfahaman5@gmail.com" icon={<Mail className="h-4 w-4" />} label="Email" />
         </motion.div>
       </div>
@@ -292,8 +447,8 @@ function Marquee() {
 function About() {
   const stats = [
     { v: 200, suffix: "+", label: "Coding problems solved" },
-    { v: 3, suffix: "+", label: "Full stack apps shipped" },
-    { v: 7, suffix: "", label: "Certifications earned" },
+    { v: 5, suffix: "+", label: "Full stack apps shipped" },
+    { v: 10, suffix: "+", label: "Certifications earned" },
     { v: 500, suffix: "+", label: "Event attendees supported" },
   ];
   return (
@@ -563,7 +718,7 @@ function Experience() {
                 <h3 className="mt-2 font-display text-xl font-semibold">Technical Operations Support</h3>
                 <div className="mt-1 text-sm text-primary">INF NGO</div>
                 <div className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
-                  <Calendar className="h-3.5 w-3.5" /> Oct 2023 – Mar 2024
+                  <Calendar className="h-3.5 w-3.5" /> Jul 2025 – Aug 2025
                 </div>
               </div>
             </Reveal>
@@ -573,10 +728,9 @@ function Experience() {
             <Reveal delay={0.05}>
               <ul className="space-y-3">
                 {[
-                  "Owned end-to-end technical setup, infrastructure prep, and software configuration for live events.",
-                  "Resolved 20+ on-the-spot issues across networking, hardware, and software in real time.",
-                  "Supported successful operations for events with 500+ attendees alongside a cross-functional team.",
-                  "Documented playbooks and recurring fixes to speed up future operations.",
+                  "Resolved 20+ software, hardware, and infrastructure issues during large-scale NGO exhibitions, ensuring uninterrupted technical operations and system reliability.",
+                  "Delivered real-time technical support to 500+ attendees by troubleshooting software, configuring systems, and maintaining event infrastructure.",
+                  "Collaborated with cross-functional teams to deploy technical solutions, streamline event workflows, and execute time-sensitive operations successfully.",
                 ].map((t) => (
                   <li key={t} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -751,19 +905,19 @@ const CERTS = [
   },
   {
     title: "Power BI Workshop",
-    org: "Simplilearn",
+    org: "Officemaster",
     date: "2024",
     image: undefined,
     badge: "Workshop",
-    pdf: "/certs/pdf/simplilearn.pdf",
+    pdf: "/certs/pdf/Certificate.pdf",
   },
   {
     title: "Advanced SEO Certification",
-    org: "HubSpot Academy",
-    date: "2024",
+    org: "Simplilearn",
+    date: "2022",
     image: undefined,
     badge: "Certified",
-    pdf: undefined,
+    pdf: "/certs/pdf/simplilearn.pdf",
   },
   {
     title: "Git & GitHub Certification",
@@ -845,7 +999,7 @@ function Achievements() {
     { v: 200, suffix: "+", label: "Coding Problems Solved", icon: <Code2 className="h-4 w-4" /> },
     { v: 4, suffix: "x", label: "Google Cloud Certified", icon: <Cloud className="h-4 w-4" /> },
     { v: 1, suffix: "", label: "Power BI Certified", icon: <Trophy className="h-4 w-4" /> },
-    { v: 3, suffix: "+", label: "Full Stack Apps Built", icon: <Layers className="h-4 w-4" /> },
+    { v: 5, suffix: "+", label: "Full Stack Apps Built", icon: <Layers className="h-4 w-4" /> },
     { v: 1, suffix: "", label: "Class Representative", icon: <Sparkles className="h-4 w-4" /> },
     { v: 1, suffix: "", label: "Event Coordinator", icon: <Award className="h-4 w-4" /> },
   ];
@@ -956,6 +1110,18 @@ function Contact() {
                     href="https://github.com/fahaman"
                   />
                   <ContactRow
+                    icon={<Instagram className="h-4 w-4" />}
+                    label="Instagram"
+                    display="@mohammed_fahaman"
+                    href="https://www.instagram.com/mohammed_fahaman/"
+                  />
+                  <ContactRow
+                    icon={<Ghost className="h-4 w-4" />}
+                    label="Snapchat"
+                    display="@fahamxn"
+                    href="https://www.snapchat.com/add/fahamxn"
+                  />
+                  <ContactRow
                     icon={<MapPin className="h-4 w-4" />}
                     label="Location"
                     display="Bhatkal, Karnataka, India"
@@ -1057,6 +1223,8 @@ function Footer() {
         <div className="flex items-center gap-4">
           <a href="https://github.com/fahaman" target="_blank" rel="noreferrer" className="hover:text-primary">GitHub</a>
           <a href="https://linkedin.com/in/mohammed-fahaman" target="_blank" rel="noreferrer" className="hover:text-primary">LinkedIn</a>
+          <a href="https://www.instagram.com/mohammed_fahaman/" target="_blank" rel="noreferrer" className="hover:text-primary">Instagram</a>
+          <a href="https://www.snapchat.com/add/fahamxn" target="_blank" rel="noreferrer" className="hover:text-primary">Snapchat</a>
           <a href="mailto:mohammedfahaman5@gmail.com" className="hover:text-primary">Email</a>
         </div>
       </div>
