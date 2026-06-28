@@ -443,31 +443,49 @@ function About({ onAvatarClick }: { onAvatarClick?: () => void }) {
 
         <div className="mt-10 grid gap-8 sm:mt-12 xl:grid-cols-[3fr_2fr]">
           <Reveal delay={0.05}>
-            <div>
-              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                I'm Mohammed Fahaman — a Full Stack developer from Bhatkal, India. I specialise
-                in the MERN stack and modern AI tooling, building products that are fast, accessible,
-                and a pleasure to use.
-              </p>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                I care deeply about engineering quality, design systems, and the small details
-                that separate good products from forgettable ones. Lately I've been exploring
-                LLMs, generative AI, and prompt engineering to build the next generation of
-                intelligent applications.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {["MERN", "Next.js", "TypeScript", "AI / LLMs", "Cloud", "REST APIs"].map((t) => (
-                  <span key={t} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-muted-foreground">{t}</span>
-                ))}
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  I'm Mohammed Fahaman — a Full Stack developer from Bhatkal, India. I specialise
+                  in the MERN stack and modern AI tooling, building products that are fast, accessible,
+                  and a pleasure to use.
+                </p>
+                <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                  I care deeply about engineering quality, design systems, and the small details
+                  that separate good products from forgettable ones. Lately I've been exploring
+                  LLMs, generative AI, and prompt engineering to build the next generation of
+                  intelligent applications.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["MERN", "Next.js", "TypeScript", "AI / LLMs", "Cloud", "REST APIs"].map((t) => (
+                    <span key={t} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-muted-foreground">{t}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="glass rounded-3xl p-6">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary"><Sparkles className="h-5 w-5" /></div>
+                  <div>
+                    <div className="font-semibold">Currently</div>
+                    <div className="text-sm text-muted-foreground">Building AI-powered web products</div>
+                  </div>
+                </div>
+                <div className="mt-5 grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
+                  <Info label="Location" value="Bhatkal, IN" />
+                  <Info label="Focus" value="Full Stack + AI" />
+                  <Info label="Stack" value="MERN · Next.js" />
+                  <Info label="Open to" value="Remote roles" />
+                </div>
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="flex flex-col gap-4">
+            <div className="flex h-full items-stretch">
               <div
                 onClick={onAvatarClick}
-                className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] shadow-2xl transition hover:border-primary/40"
+                className="group relative aspect-[3/4] w-full cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] shadow-2xl transition hover:border-primary/40"
               >
                 <img
                   src="/fahaman.jpeg"
@@ -483,22 +501,6 @@ function About({ onAvatarClick }: { onAvatarClick?: () => void }) {
                   <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/20 text-primary backdrop-blur transition group-hover:bg-primary group-hover:text-primary-foreground">
                     <Maximize2 className="h-4 w-4" />
                   </div>
-                </div>
-              </div>
-
-              <div className="glass rounded-3xl p-6">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary"><Sparkles className="h-5 w-5" /></div>
-                  <div>
-                    <div className="font-semibold">Currently</div>
-                    <div className="text-sm text-muted-foreground">Building AI-powered web products</div>
-                  </div>
-                </div>
-                <div className="mt-5 grid grid-cols-2 gap-4 text-sm">
-                  <Info label="Location" value="Bhatkal, IN" />
-                  <Info label="Focus" value="Full Stack + AI" />
-                  <Info label="Stack" value="MERN · Next.js" />
-                  <Info label="Open to" value="Remote roles" />
                 </div>
               </div>
             </div>
