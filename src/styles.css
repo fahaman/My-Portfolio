@@ -58,7 +58,7 @@
   /* Palette */
   --navy:       #121f2e;
   --navy-deep:  #0e1525;
-  --dark-blue:  #24324c;
+  --dark-blue:  #141b27;
   --steel:      #4d6788;
   --soft-blue:  #8095b2;
   --gold:       #ffd670;
@@ -67,19 +67,22 @@
 
   /* Semantic tokens */
   --background:              #0e1525;
+  --cutout-fill:             #0e1525;
+  --avixx-card-bg:           linear-gradient(to bottom, #152238, #0e1726);
+  --avixx-card-border:       rgba(255, 255, 255, 0.08);
   --foreground:              #f0f4ff;
-  --card:                    #1a2535;
+  --card:                    #142033;
   --card-foreground:         #f0f4ff;
-  --popover:                 #121f2e;
+  --popover:                 #111a29;
   --popover-foreground:      #f0f4ff;
   --primary:                 #ffd670;
-  --primary-foreground:      #0e1525;
-  --secondary:               #24324c;
+  --primary-foreground:      #000000;
+  --secondary:               #1a293d;
   --secondary-foreground:    #f0f4ff;
-  --muted:                   #1e2d42;
+  --muted:                   #121d2c;
   --muted-foreground:        #8fa3bf;
   --accent:                  #ffd670;
-  --accent-foreground:       #0e1525;
+  --accent-foreground:       #000000;
   --destructive:             #e05252;
   --destructive-foreground:  #ffffff;
   --border:                  rgba(255,255,255,0.08);
@@ -87,9 +90,9 @@
   --ring:                    #ffd670;
 
   /* Glass surfaces */
-  --glass-bg:           rgba(18,31,46,0.60);
+  --glass-bg:           rgba(14,21,37,0.60);
   --glass-border:       rgba(255,255,255,0.09);
-  --glass-strong-bg:    rgba(18,31,46,0.82);
+  --glass-strong-bg:    rgba(20,30,48,0.85);
   --glass-strong-border:rgba(255,255,255,0.11);
 
   /* Gradient text helpers */
@@ -97,14 +100,12 @@
   --grad-cool-to:   #8095b2;
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   LIGHT theme  —  applied via data-theme="light" on <html>
-══════════════════════════════════════════════════════════════════ */
+/* ─── LIGHT theme ─── */
 :root[data-theme="light"] {
   color-scheme: light;
 
   --navy:       #e8edf5;
-  --navy-deep:  #f0f4fb;
+  --navy-deep:  #ffffff;
   --dark-blue:  #dce4f0;
   --steel:      #5a7ab5;
   --soft-blue:  #3d5a8a;
@@ -112,7 +113,10 @@
   --gold-soft:  #d49000;
   --gold-dark:  #8a5800;
 
-  --background:              #f5f7fc;
+  --background:              #f7f7f9;
+  --cutout-fill:             #ffffff;
+  --avixx-card-bg:           linear-gradient(to bottom, #ffffff, #f1f3f7);
+  --avixx-card-border:       rgba(0, 0, 0, 0.08);
   --foreground:              #0d1929;
   --card:                    #ffffff;
   --card-foreground:         #0d1929;
@@ -142,25 +146,8 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   OCEAN theme  —  applied via data-theme="ocean" on <html>
-══════════════════════════════════════════════════════════════════ */
-:root[data-theme="ocean"] {
-  color-scheme: dark;
-
-  --navy:       #0a1f2e;
-  --navy-deep:  #071524;
-  --dark-blue:  #102840;
-  --steel:      #2a7bb5;
-  --soft-blue:  #5baee0;
-  --gold:       #38c8e0;
-  --gold-soft:  #7ddcee;
-  --gold-dark:  #1fa8c8;
-
-  --background:              #071524;
-  --foreground:              #e8f4fb;
-  --card:                    #0d2038;
   --card-foreground:         #e8f4fb;
-  --popover:                 #0a1f2e;
+  --popover:                 #051524;
   --popover-foreground:      #e8f4fb;
   --primary:                 #38c8e0;
   --primary-foreground:      #071524;
@@ -375,3 +362,38 @@
   33%       { transform: translate(-30px, -35px) scale(1.1); }
   66%       { transform: translate(30px, 20px) scale(0.9); }
 }
+
+/* ─── Avixx-inspired Premium Styles ─── */
+@utility avixx-card {
+  position: relative;
+  background: var(--avixx-card-bg);
+  border: 1px solid var(--avixx-card-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+@utility avixx-pill-pulse {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+}
+
+.avixx-corner-svg {
+  pointer-events: none;
+  fill: var(--cutout-fill);
+}
+
+/* Starry space background styling */
+.starry-space {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
+  background-size: 250px 250px, 350px 350px, 400px 400px, 300px 300px;
+  animation: space-pan 90s linear infinite;
+}
+
+@keyframes space-pan {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to { background-position: 1000px 1000px, -500px 1000px, 1000px -500px, -1000px -1000px; }
+}
+
+

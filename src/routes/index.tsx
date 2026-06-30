@@ -172,81 +172,38 @@ function Portfolio() {
 }
 
 /* ---------------- THEME SELECTOR ---------------- */
-type ThemeId = "dark" | "light" | "ocean";
-
-const THEMES: { id: ThemeId; label: string; icon: React.ReactNode; dot: string }[] = [
-  { id: "dark",  label: "Dark",  icon: <Moon className="h-3.5 w-3.5" />, dot: "#ffd670" },
-  { id: "light", label: "Light", icon: <Sun  className="h-3.5 w-3.5" />, dot: "#b97800" },
-  { id: "ocean", label: "Ocean", icon: <Monitor className="h-3.5 w-3.5" />, dot: "#38c8e0" },
-];
-
 function ThemeSelector() {
-  const [active, setActive] = useState<ThemeId>("dark");
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
-  const applyTheme = (id: ThemeId) => {
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
     const root = document.documentElement;
-    if (id === "dark") {
+    if (nextTheme === "dark") {
       root.removeAttribute("data-theme");
     } else {
-      root.setAttribute("data-theme", id);
+      root.setAttribute("data-theme", "light");
     }
-    setActive(id);
-    setOpen(false);
+    setTheme(nextTheme);
   };
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  const current = THEMES.find((t) => t.id === active)!;
-
   return (
-    <div ref={ref} className="relative">
-      <button
-        aria-label="Select theme"
-        onClick={() => setOpen((o) => !o)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] px-3 py-2 text-xs font-medium backdrop-blur transition hover:border-[var(--primary)] hover:text-[var(--foreground)]"
-        style={{ color: "var(--muted-foreground)" }}
-      >
-        <Palette className="h-3.5 w-3.5" style={{ color: "var(--primary)" }} />
-        <span className="hidden sm:inline" style={{ color: "var(--foreground)" }}>{current.label}</span>
-        <span style={{ color: "var(--muted-foreground)" }}>{current.icon}</span>
-      </button>
-      {open && (
-        <div
-          className="absolute right-0 top-11 z-[100] min-w-[150px] overflow-hidden rounded-2xl p-1.5 shadow-2xl backdrop-blur-xl"
-          style={{
-            background: "var(--glass-strong-bg)",
-            border: "1px solid var(--glass-strong-border)",
-          }}
-        >
-          {THEMES.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => applyTheme(t.id)}
-              className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-xs font-medium transition"
-              style={{
-                background: active === t.id ? "color-mix(in srgb, var(--primary) 12%, transparent)" : "transparent",
-                color: active === t.id ? "var(--primary)" : "var(--muted-foreground)",
-              }}
-            >
-              <span style={{ width: 10, height: 10, borderRadius: "50%", background: t.dot, flexShrink: 0, display: "inline-block" }} />
-              {t.icon}
-              {t.label}
-              {active === t.id && (
-                <span className="ml-auto" style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--primary)", display: "inline-block" }} />
-              )}
-            </button>
-          ))}
-        </div>
+    <button
+      aria-label="Toggle theme"
+      onClick={toggleTheme}
+      className="inline-flex items-center gap-1.5 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] px-3 py-2 text-xs font-semibold backdrop-blur transition hover:border-[var(--primary)] text-[var(--foreground)] cursor-pointer"
+    >
+      {theme === "dark" ? (
+        <>
+          <Sun className="h-3.5 w-3.5 text-primary animate-pulse" />
+          <span className="hidden sm:inline">Light Mode</span>
+        </>
+      ) : (
+        <>
+          <Moon className="h-3.5 w-3.5 text-primary animate-pulse" />
+          <span className="hidden sm:inline">Dark Mode</span>
+        </>
       )}
-    </div>
+    </button>
   );
 }
 
@@ -272,56 +229,136 @@ function NavAvatar({ onClick }: { onClick?: () => void }) {
 }
 
 /* ---------------- NAV ---------------- */
+/* ---------------- NAV ---------------- */
+/* ---------------- NAV ---------------- */
+/* ---------------- NAV ---------------- */
 function Nav({ onAvatarClick }: { onAvatarClick?: () => void }) {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-4 sm:pt-4">
-      <nav className="glass-strong flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-2.5 sm:px-6">
-        <a href="#top" className="flex items-center gap-2 font-display text-sm font-semibold tracking-tight">
-          <NavAvatar onClick={onAvatarClick} />
-          <span className="hidden sm:inline">Mohammed Fahaman</span>
-        </a>
-        <ul className="hidden items-center gap-1 lg:flex">
-          {NAV.map((n) => (
-            <li key={n.id}>
-              <a
-                href={`#${n.id}`}
-                className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition hover:bg-white/5 hover:text-foreground"
-              >
+    <>
+      {/* Mobile Sticky Bar - Hidden on Desktop */}
+      <div className="fixed inset-x-0 top-0 z-50 px-2 sm:hidden">
+        <div className="relative flex h-16 items-center justify-between px-5">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-background/80 backdrop-blur-md border-b border-[var(--border)]" />
+          <a aria-label="Mohammed Fahaman" href="#top" className="flex items-center gap-2 font-display text-sm font-semibold">
+            <NavAvatar onClick={onAvatarClick} />
+            <span>Fahaman</span>
+          </a>
+          <div className="flex items-center gap-2">
+            <ThemeSelector />
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen(!open)}
+              className="relative z-10 flex h-10 w-10 items-center justify-center border border-[var(--border)] rounded-full bg-black/20"
+            >
+              <span className="text-xl">{open ? "×" : "≡"}</span>
+            </button>
+          </div>
+        </div>
+        {open && (
+          <div className="glass-strong absolute top-18 left-3 right-3 grid gap-1 rounded-2xl p-3">
+            {NAV.map((n) => (
+              <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm hover:bg-white/5">
                 {n.label}
               </a>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-2">
-          <ThemeSelector />
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setOpen((o) => !o)}
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 lg:hidden"
-          >
-            <span className="text-lg">{open ? "×" : "≡"}</span>
-          </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Desktop Inverted Curved Cutout Navbar - Hidden on Mobile */}
+      <div className="absolute top-0 left-1/2 z-50 hidden -translate-x-1/2 transition-transform duration-300 ease-in-out sm:block">
+        <div className="relative">
+          <div className="flex items-start">
+            {/* Left curved transition corner */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="87" height="50" overflow="visible" className="shrink-0">
+              <path d="M 0 0 C 45.98 0 37 50 87 50 L 87 0 Z" fill="var(--cutout-fill)" />
+              <path d="M 0 0 C 45.98 0 37 50 87 50" stroke="var(--border)" strokeWidth="1" fill="none" />
+            </svg>
+            {/* Center solid black/theme background bar - Clean theme-aware border */}
+            <div className="h-[50px] w-[500px] shrink-0 bg-[var(--cutout-fill)] border-b border-[var(--border)] mx-[-1px]"></div>
+            {/* Right curved transition corner */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="87" height="50" overflow="visible" className="shrink-0">
+              <path d="M 87 0 C 41.02 0 50 50 0 50 L 0 0 Z" fill="var(--cutout-fill)" />
+              <path d="M 0 50 C 50 50 41.02 0 87 0" stroke="var(--border)" strokeWidth="1" fill="none" />
+            </svg>
+          </div>
+          
+          {/* Menu items inside the cutout bar - profile picture centered with gold ring */}
+          <div className="absolute inset-0 flex h-[50px] items-center justify-center gap-8 px-4 text-xs font-semibold">
+            <a className="transition-colors duration-200 text-[var(--muted-foreground)] hover:text-[var(--foreground)]" href="#about">About</a>
+            <a className="transition-colors duration-200 text-[var(--muted-foreground)] hover:text-[var(--foreground)]" href="#skills">Skills</a>
+            
+            {/* Center Avatar Logo with gold border look */}
+            <span
+              onClick={onAvatarClick}
+              className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full border border-primary bg-primary text-primary-foreground font-bold cursor-pointer transition hover:scale-105 mx-2"
+            >
+              <img
+                src="/fahaman.jpeg"
+                alt="Mohammed Fahaman"
+                className="h-full w-full object-cover"
+              />
+            </span>
+
+            <a className="transition-colors duration-200 text-[var(--muted-foreground)] hover:text-[var(--foreground)]" href="#projects">Work</a>
+            <a className="transition-colors duration-200 text-[var(--muted-foreground)] hover:text-[var(--foreground)]" href="#contact">Contact</a>
+          </div>
         </div>
-      </nav>
-      {open && (
-        <div className="glass-strong absolute top-20 left-3 right-3 grid max-w-6xl gap-1 rounded-2xl p-3 sm:left-4 sm:right-4 lg:hidden">
-          {NAV.map((n) => (
-            <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm hover:bg-white/5">
-              {n.label}
-            </a>
-          ))}
-        </div>
-      )}
-    </header>
+      </div>
+
+      {/* Floating Theme Selector on Desktop */}
+      <div className="fixed top-3 right-4 z-50 hidden sm:block">
+        <ThemeSelector />
+      </div>
+    </>
   );
 }
 
 /* ---------------- HERO ---------------- */
+/* ---------------- HERO ---------------- */
+function AvailabilityPill() {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="mx-auto mb-6 flex w-fit cursor-pointer items-center overflow-hidden rounded-full border border-white/10 bg-neutral-900/80 p-1 pr-3 text-[11px] font-semibold tracking-tight backdrop-blur-md transition hover:border-primary/50 avixx-pill-pulse"
+    >
+      <span className="shrink-0 rounded-full bg-primary px-2.5 py-1 font-bold text-primary-foreground">
+        OPEN TO ROLES
+      </span>
+      <motion.span
+        initial={{ width: 0, opacity: 0 }}
+        animate={{
+          width: hovered ? "auto" : 0,
+          opacity: hovered ? 1 : 0,
+          marginLeft: hovered ? 8 : 0,
+        }}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="overflow-hidden whitespace-nowrap font-medium text-neutral-300"
+      >
+        Available for Full-Stack &amp; AI Engineering
+      </motion.span>
+      <motion.span
+        animate={{ x: hovered ? 3 : 0 }}
+        className="ml-2 font-medium text-neutral-400"
+      >
+        →
+      </motion.span>
+    </motion.div>
+  );
+}
+
 function Hero() {
   return (
     <section id="top" className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pt-24 sm:px-6">
       <div className="absolute inset-0 bg-grid opacity-60" />
+      <div className="absolute inset-0 starry-space opacity-50 z-0 pointer-events-none" />
       <div className="noise absolute inset-0" />
 
       {/* Animated gradient orbs — pure CSS replacement for 3D scene */}
@@ -332,33 +369,22 @@ function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary mb-6"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          Available for Full-Stack &amp; AI Roles
-        </motion.div>
+        <AvailabilityPill />
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl"
+          className="font-display text-4xl font-bold leading-[1.0] tracking-[-0.05em] sm:text-5xl md:text-7xl lg:text-8xl"
         >
-          <span className="text-gradient-cool">Mohammed</span>{" "}
-          <span className="text-gradient-gold">Fahaman</span>
+          <span className="block text-gradient-cool">Mohammed Fahaman</span>
+          <span className="block text-gradient-gold mt-2 text-[0.80em] leading-[0.95] font-semibold tracking-[-0.06em]">Crafting Apps that Scale.</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:mt-5 sm:text-base md:text-lg"
+          className="mx-auto mt-6 max-w-2xl text-balance text-sm text-muted-foreground sm:mt-8 sm:text-base md:text-lg"
         >
           Full Stack Developer · MERN Engineer · AI Enthusiast. I build scalable web
           applications, AI-powered tools, and modern digital experiences with care
@@ -416,20 +442,31 @@ function Social({ href, icon, label }: { href: string; icon: React.ReactNode; la
 }
 
 /* ---------------- MARQUEE ---------------- */
+/* ---------------- MARQUEE ---------------- */
 function Marquee() {
-  const items = ["React", "Next.js", "Node.js", "TypeScript", "MongoDB", "Python", "Google Cloud", "Generative AI", "Prisma", "Tailwind", "Express", "MySQL"];
+  const items = [
+    { name: "React", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm10.66-3.82c-.08-.37-.36-.67-.73-.78-2.15-.65-4.88-.95-7.55-.95h-.76c-.05 0-.1 0-.15.01A16.03 16.03 0 0 0 12 1.34c-.3-.22-.72-.22-1.02 0a16.03 16.03 0 0 0-1.47 7.11 11.23 11.23 0 0 0-.91.95c-2.67 0-5.4.3-7.55.95-.37.11-.65.41-.73.78-.14.65-.21 1.32-.21 2s.07 1.35.21 2c.08.37.36.67.73.78 2.15.65 4.88.95 7.55.95.25 0 .5 0 .76-.01A16.03 16.03 0 0 0 12 22.66c.3.22.72.22 1.02 0a16.03 16.03 0 0 0 1.47-7.11c.3-.3.6-.62.91-.95 2.67 0 5.4-.3 7.55-.95.37-.11.65-.41.73-.78.14-.65.21-1.32.21-2s-.07-1.35-.21-2z"/></svg> },
+    { name: "Next.js", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.44 14.88L6.44 11.68V16H5v-7.33h1.44l4.12 5.2V8.67H12v8.21h-1.44z"/></svg> },
+    { name: "Vercel", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 1L24 21.75H0L12 1Z"/></svg> },
+    { name: "Supabase", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M21.36 10.36L12 21.68v-7.32H2.64L12 2.32v7.32h9.36z"/></svg> },
+    { name: "Tailwind", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 6.09c-2.48 0-3.73 1.24-3.73 3.73 0 2.48 1.25 3.73 3.73 3.73s3.73-1.25 3.73-3.73c0-2.49-1.25-3.73-3.73-3.73z"/></svg> },
+    { name: "TypeScript", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M1.5 1.5h21v21h-21v-21zm19.5 13.5c-.88-.41-2.12-.66-3.12-.66-1.57 0-2.31.76-2.31 1.76 0 2.65 4.31 1.94 4.31 4.54 0 1.53-1.12 2.36-3.23 2.36-1.53 0-2.73-.41-3.64-.87l.62-1.78c.87.41 1.98.66 2.89.66 1.45 0 2.15-.58 2.15-1.49 0-2.61-4.31-1.99-4.31-4.59 0-1.49 1.16-2.4 3.39-2.4 1.4 0 2.44.37 3.06.74l-.75 1.64z"/></svg> },
+    { name: "GitHub", icon: <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> },
+  ];
   const row = [...items, ...items];
   return (
     <section aria-hidden className="relative border-y border-white/5 bg-white/[0.015] py-6">
       <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
         <motion.div
-          className="flex gap-8 whitespace-nowrap font-display text-xl text-muted-foreground sm:gap-12 sm:text-2xl md:text-3xl"
+          className="flex gap-12 whitespace-nowrap font-display text-lg font-medium text-muted-foreground/80 sm:gap-16 sm:text-xl"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 30, ease: "linear", repeat: Infinity }}
         >
           {row.map((t, i) => (
-            <span key={i} className="inline-flex items-center gap-8 sm:gap-12">
-              {t} <span className="text-primary/70">✦</span>
+            <span key={i} className="inline-flex items-center gap-2.5 sm:gap-3">
+              {t.icon}
+              <span className="ml-1">{t.name}</span>
+              <span className="text-primary/40 ml-4">✦</span>
             </span>
           ))}
         </motion.div>
@@ -581,12 +618,21 @@ function Skills() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {groups.map((g, i) => (
             <Reveal key={g.title} delay={i * 0.04}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-primary/40 sm:rounded-3xl sm:p-6">
-                <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 blur-3xl transition group-hover:bg-primary/25" />
-                <div className="relative flex items-center gap-3">
+              <div className="group relative h-full overflow-hidden rounded-2xl avixx-card p-6 transition hover:border-primary/40 sm:rounded-3xl">
+                {/* Custom SVG Corner Cutouts from Avixx Studio style - fill blends with background */}
+                <svg className="avixx-corner-svg top-0 left-12 rotate-90" width="18" height="18" viewBox="0 0 18 18">
+                  <path d="M 0 18 L 18 18 C 8.059 18 0 9.941 0 0 Z" fill="var(--background)" />
+                </svg>
+                <div className="absolute top-0 left-0 bg-[var(--background)] px-2.5 py-1 rounded-br-2xl text-[9px] font-bold text-[var(--muted-foreground)] border-r border-b border-[var(--border)] uppercase tracking-wider">
+                  0{i + 1}
+                </div>
+                
+                <div className="absolute top-4 right-1/2 translate-x-1/2 w-[80%] h-[20%] bg-primary/10 filter blur-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+                
+                <div className="relative mt-2 flex items-center gap-3">
                   <div className="grid h-9 w-9 place-items-center rounded-xl bg-primary/15 text-primary">{g.icon}</div>
                   <h3 className="font-display text-lg font-semibold">{g.title}</h3>
                 </div>
@@ -961,7 +1007,7 @@ function Certifications() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {CERTS.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.04}>
-              <div className="group relative flex min-h-[200px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
+              <div className="group relative flex min-h-[200px] flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
 
                 {/* Default state — always visible */}
                 <div className="flex flex-1 flex-col p-5">
@@ -1034,7 +1080,7 @@ function Achievements() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it, i) => (
             <Reveal key={it.label} delay={i * 0.04}>
-              <div className="flex items-center gap-5 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-5 transition hover:border-primary/40">
+              <div className="flex items-center gap-5 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition hover:border-primary/40">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/15 text-primary sm:h-14 sm:w-14">{it.icon}</div>
                 <div className="min-w-0">
                   <div className="font-display text-2xl font-bold text-gradient-gold sm:text-3xl">
@@ -1234,16 +1280,71 @@ function Field({ name, label, type = "text", required }: { name: string; label: 
 
 /* ---------------- FOOTER ---------------- */
 function Footer() {
+  const [subStatus, setSubStatus] = useState<"idle" | "submitting" | "ok">("idle");
   return (
-    <footer className="relative border-t border-white/10 py-8 sm:py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 text-center text-sm text-muted-foreground sm:flex-row sm:justify-between sm:px-6 sm:text-left">
-        <div>© {new Date().getFullYear()} Mohammed Fahaman. Crafted with care.</div>
-        <div className="flex items-center gap-4">
-          <a href="https://github.com/fahaman" target="_blank" rel="noreferrer" className="hover:text-primary">GitHub</a>
-          <a href="https://linkedin.com/in/mohammed-fahaman" target="_blank" rel="noreferrer" className="hover:text-primary">LinkedIn</a>
-          <a href="https://www.instagram.com/mohammed_fahaman/" target="_blank" rel="noreferrer" className="hover:text-primary">Instagram</a>
-          <a href="https://www.snapchat.com/add/fahamxn" target="_blank" rel="noreferrer" className="hover:text-primary">Snapchat</a>
-          <a href="mailto:mohammedfahaman5@gmail.com" className="hover:text-primary">Email</a>
+    <footer className="mx-auto max-w-6xl px-4 pb-12 pt-6 sm:px-6">
+      <div className="group relative overflow-hidden rounded-3xl avixx-card p-6 sm:p-10 md:p-12">
+        {/* Ambient Top Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[30%] bg-primary/10 filter blur-[40px] opacity-70 rounded-full" />
+        
+        <div className="relative grid gap-10 md:grid-cols-12 md:items-start">
+          {/* Logo & Tagline column */}
+          <div className="md:col-span-6 flex flex-col items-start gap-4">
+            <div className="flex items-center gap-2">
+              <span className="grid h-8 w-8 place-items-center overflow-hidden rounded-full border border-primary bg-primary text-primary-foreground font-bold">
+                <img src="/fahaman.jpeg" alt="Mohammed Fahaman" className="h-full w-full object-cover" />
+              </span>
+              <span className="font-display font-bold text-lg tracking-tight">Mohammed Fahaman</span>
+            </div>
+            <h3 className="font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl max-w-sm">
+              Engineering Done Right. Products Built to Scale.
+            </h3>
+            
+            {/* Newsletter input */}
+            <div className="mt-4 w-full max-w-sm">
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Stay in the loop</p>
+              <form onSubmit={(e) => { e.preventDefault(); setSubStatus("submitting"); setTimeout(() => setSubStatus("ok"), 1000); }} className="flex overflow-hidden rounded-full border border-[var(--border)] bg-background/50 p-1">
+                <input
+                  type="email"
+                  required
+                  placeholder="your@email.com"
+                  className="flex-1 bg-transparent px-4 py-2 text-xs outline-none text-[var(--foreground)]"
+                />
+                <button
+                  type="submit"
+                  className="rounded-full bg-white dark:bg-neutral-100 text-black dark:text-neutral-950 px-4 py-2 text-xs font-bold transition hover:bg-neutral-200 cursor-pointer"
+                >
+                  {subStatus === "submitting" ? "Sending..." : subStatus === "ok" ? "Sent!" : "Contact me"}
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          {/* Links columns */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-6 md:justify-items-end w-full">
+            <div className="flex flex-col gap-3">
+              <h4 className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Pages</h4>
+              <a className="text-sm font-semibold transition hover:text-primary" href="#top">Home</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="#about">About</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="#skills">Skills</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="#projects">Work</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="#contact">Contact</a>
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              <h4 className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Socials</h4>
+              <a className="text-sm font-semibold transition hover:text-primary" href="https://linkedin.com/in/mohammed-fahaman" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="https://github.com/fahaman" target="_blank" rel="noreferrer">GitHub</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="https://www.instagram.com/mohammed_fahaman/" target="_blank" rel="noreferrer">Instagram</a>
+              <a className="text-sm font-semibold transition hover:text-primary" href="https://www.snapchat.com/add/fahamxn" target="_blank" rel="noreferrer">Snapchat</a>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom copyright section */}
+        <hr className="my-8 border-[var(--border)]" />
+        <div className="flex flex-col gap-4 text-xs text-muted-foreground sm:flex-row sm:justify-between">
+          <div>© {new Date().getFullYear()} Mohammed Fahaman. All rights reserved.</div>
         </div>
       </div>
     </footer>
