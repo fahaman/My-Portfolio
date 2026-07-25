@@ -16,9 +16,9 @@ import { Counter, MagneticButton, Reveal } from "@/components/portfolio/motion-b
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mohammed Fahaman — Full Stack Developer & AI Engineer" },
+      { title: "Mohammed Fahaman Full Stack Developer & AI Engineer" },
       { name: "description", content: "Mohammed Fahaman is a Full Stack and MERN developer based in India, building scalable web apps, AI-powered tools, and modern digital experiences." },
-      { property: "og:title", content: "Mohammed Fahaman — Full Stack Developer" },
+      { property: "og:title", content: "Mohammed Fahaman Full Stack Developer" },
       { property: "og:description", content: "Building scalable web apps, AI-powered solutions, and modern digital experiences." },
       { property: "og:url", content: "/" },
     ],
@@ -40,17 +40,10 @@ const NAV = [
 const PROFILE_IMAGES = [
   "/fahaman.jpeg",
   "/fahaman2.jpeg",
-  "/photos/IMG_1182.jpg",
-  "/photos/IMG_1277.jpg",
-  "/photos/IMG_1332.jpg",
   "/photos/IMG_1528.jpg",
   "/photos/IMG_1563.jpg",
-  "/photos/IMG_2230.jpg",
   "/photos/IMG_2486.jpg",
   "/photos/IMG_3836.jpg",
-  "/photos/IMG_3837.jpg",
-  "/photos/PXL_20260528_124023499.PORTRAIT.jpeg",
-  "/photos/PXL_20260528_124536972.PORTRAIT.jpeg",
   "/photos/PXL_20260528_124539384.PORTRAIT.jpeg",
 ];
 
@@ -498,7 +491,7 @@ function About({ onAvatarClick }: { onAvatarClick?: () => void }) {
               </h2>
               <div>
                 <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  I'm Mohammed Fahaman — a Full Stack developer from Bhatkal, India. I specialise
+                  I'm Mohammed Fahaman a Full Stack developer from Bhatkal, India. I specialise
                   in the MERN stack and modern AI tooling, building products that are fast, accessible,
                   and a pleasure to use.
                 </p>
@@ -655,6 +648,14 @@ function Skills() {
 /* ---------------- PROJECTS ---------------- */
 const PROJECTS = [
   {
+    name: "Nexora-AI",
+    tag: "Modern Web App",
+    desc: "A full-stack application built with TanStack Start, React Query, and Tailwind CSS. Features an interactive UI powered by Framer Motion and Radix UI.",
+    tech: ["TanStack Start", "React Query", "Tailwind CSS", "Framer Motion"],
+    accent: "from-[#8E2DE2]/30 to-transparent",
+    year: "2025",
+  },
+  {
     name: "LearnChart",
     tag: "AI Trading Education",
     desc: "An AI-powered platform that teaches trading through chart analysis, paper trading, and structured lessons. Built with role-based access, a responsive learner dashboard, and TradingView integration.",
@@ -663,11 +664,27 @@ const PROJECTS = [
     year: "2025",
   },
   {
+    name: "LearnChart Trading Agent",
+    tag: "AI Trading Bot",
+    desc: "An AI-powered trading agent that uses Claude to analyze markets and execute perpetual futures trades on Hyperliquid with built-in risk management.",
+    tech: ["Python", "Anthropic Claude", "Hyperliquid API", "Technical Indicators"],
+    accent: "from-[#00F260]/30 to-transparent",
+    year: "2025",
+  },
+  {
     name: "HelpHive",
     tag: "Community Marketplace",
     desc: "A community-driven marketplace for local services. Includes auth, provider onboarding, listings, and a clean, responsive UI on top of a normalized relational schema.",
     tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     accent: "from-[#4D6788]/40 to-transparent",
+    year: "2024",
+  },
+  {
+    name: "Ellexo",
+    tag: "E-Commerce Frontend",
+    desc: "A robust React client application integrating Stripe for payments, Material UI for components, and Swiper for interactive carousels.",
+    tech: ["React", "Material UI", "Stripe", "Axios"],
+    accent: "from-[#FF4B2B]/30 to-transparent",
     year: "2024",
   },
   {
@@ -732,18 +749,11 @@ function ProjectCard({ p, index }: { p: (typeof PROJECTS)[number]; index: number
             ))}
           </div>
           <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
-            <a className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90" href="#contact">
-              Discuss Project <ArrowUpRight className="h-4 w-4" />
+            <a className="group/btn inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground" href="#contact">
+              Discuss Project <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
             </a>
-            <a className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-muted-foreground transition hover:text-foreground" href="https://github.com/fahaman" target="_blank" rel="noreferrer">
-              <Github className="h-4 w-4" /> View Code
-            </a>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-muted-foreground/50 cursor-default select-none">
-              <ExternalLink className="h-4 w-4" /> In Development
-            </span>
           </div>
         </div>
-
         <div className="md:col-span-5">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1a2a44] to-[#0E1525]">
             <div className="bg-grid absolute inset-0 opacity-50" />
@@ -751,9 +761,6 @@ function ProjectCard({ p, index }: { p: (typeof PROJECTS)[number]; index: number
               <div className="font-display text-5xl font-bold text-gradient-gold opacity-60 transition group-hover:scale-105 sm:text-7xl">
                 {p.name.charAt(0)}
               </div>
-            </div>
-            <div className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1 text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur">
-              Preview
             </div>
           </div>
         </div>
@@ -782,7 +789,7 @@ function Experience() {
                 <h3 className="mt-2 font-display text-xl font-semibold">Technical Operations Support</h3>
                 <div className="mt-1 text-sm text-primary">INF NGO</div>
                 <div className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
-                  <Calendar className="h-3.5 w-3.5" /> Jul 2025 – Aug 2025
+                  <Calendar className="h-3.5 w-3.5" /> Aug 2024 - Oct 2025
                 </div>
               </div>
             </Reveal>
