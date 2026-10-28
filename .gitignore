@@ -13,6 +13,8 @@ dist/
 .nitro/
 .cache/
 .wrangler/
+.tanstack/
+.vinxi/
 
 # Editor
 .vscode/

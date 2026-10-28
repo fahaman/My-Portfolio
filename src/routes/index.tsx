@@ -578,6 +578,10 @@ function Hero({
                 <img
                   src="/fahaman.png"
                   alt="Mohammed Fahaman - Full-Stack Developer"
+                  width={640}
+                  height={800}
+                  fetchPriority="high"
+                  decoding="async"
                   className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-102"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-65" />
