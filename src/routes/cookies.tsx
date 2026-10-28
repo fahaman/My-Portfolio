@@ -5,9 +5,17 @@ export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
       { title: "Cookie Policy | Mohammed Fahaman" },
-      { name: "description", content: "Cookie policy and local storage transparency for Mohammed Fahaman's portfolio website." },
+      {
+        name: "description",
+        content:
+          "Cookie policy and local storage transparency for Mohammed Fahaman's portfolio website.",
+      },
       { property: "og:title", content: "Cookie Policy | Mohammed Fahaman" },
-      { property: "og:description", content: "Learn how cookies and browser storage are utilized on mohammedfahaman.dev." },
+      {
+        property: "og:description",
+        content:
+          "Learn how cookies and browser storage are utilized on mohammedfahaman.dev.",
+      },
     ],
     links: [{ rel: "canonical", href: "/cookies" }],
   }),
@@ -29,7 +37,9 @@ function CookiesPage() {
           </Link>
           <div className="flex items-center gap-2">
             <Cookie className="h-4 w-4 text-primary" />
-            <span className="text-xs font-mono text-muted-foreground">Cookie Policy</span>
+            <span className="text-xs font-mono text-muted-foreground">
+              Cookie Policy
+            </span>
           </div>
         </div>
       </header>
@@ -55,7 +65,11 @@ function CookiesPage() {
               1. Strict Privacy Philosophy
             </h2>
             <p className="mt-3">
-              This portfolio prioritizes visitor privacy. <strong className="text-foreground">I do not use third-party advertising cookies, cross-site trackers, or behavioral profiling pixels.</strong>
+              This portfolio prioritizes visitor privacy.{" "}
+              <strong className="text-foreground">
+                I do not use third-party advertising cookies, cross-site
+                trackers, or behavioral profiling pixels.
+              </strong>
             </p>
           </section>
 
@@ -78,13 +92,20 @@ function CookiesPage() {
                   <tr>
                     <td className="py-3 font-mono text-primary">data-theme</td>
                     <td className="py-3">Local Storage / Attribute</td>
-                    <td className="py-3">Stores your selected display theme (dark or light mode)</td>
+                    <td className="py-3">
+                      Stores your selected display theme (dark or light mode)
+                    </td>
                     <td className="py-3">Persistent (User controlled)</td>
                   </tr>
                   <tr>
-                    <td className="py-3 font-mono text-primary">session state</td>
+                    <td className="py-3 font-mono text-primary">
+                      session state
+                    </td>
                     <td className="py-3">In-Memory React State</td>
-                    <td className="py-3">Maintains photo gallery lightbox active index during your visit</td>
+                    <td className="py-3">
+                      Maintains photo gallery lightbox active index during your
+                      visit
+                    </td>
                     <td className="py-3">Session only</td>
                   </tr>
                 </tbody>
@@ -98,10 +119,21 @@ function CookiesPage() {
               3. Managing Preferences
             </h2>
             <p className="mt-3">
-              Because only essential UI preferences (like the dark/light mode toggle) are utilized, no disruptive banner popups or tracking consents are mandated. You can clear your browser storage or cache at any time using your browser&rsquo;s developer tools or settings.
+              Because only essential UI preferences (like the dark/light mode
+              toggle) are utilized, no disruptive banner popups or tracking
+              consents are mandated. You can clear your browser storage or cache
+              at any time using your browser&rsquo;s developer tools or
+              settings.
             </p>
             <p className="mt-3 text-xs text-muted-foreground">
-              Questions regarding this policy may be directed to <a href="mailto:mohammedfahaman5@gmail.com" className="text-primary hover:underline">mohammedfahaman5@gmail.com</a>.
+              Questions regarding this policy may be directed to{" "}
+              <a
+                href="mailto:mohammedfahaman5@gmail.com"
+                className="text-primary hover:underline"
+              >
+                mohammedfahaman5@gmail.com
+              </a>
+              .
             </p>
           </section>
         </div>

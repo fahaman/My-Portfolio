@@ -8,18 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2026-10-27
 
 ### Added
+
 - **Employee Management System**: Full-stack workforce & HR management platform ([GitHub](https://github.com/fahaman/Employee-Management-System) · [Live Preview](https://employee-management-system-two-swart.vercel.app/)).
 - **MediaSearch**: Interactive media discovery engine ([GitHub](https://github.com/fahaman/MediaSearch) · [Live Preview](https://media-search-liyyyepoo-mohammedfahaman5-3784s-projects.vercel.app/)).
 - **Live Preview & GitHub Buttons**: Integrated direct external launch and repository links on project cards.
 - **New Authentic Studio Portraits**: Added `fahaman.png` and `fahaman2.png` to the lightbox gallery and application navigation.
 
 ### Changed
+
 - **Rebranded Nexora-AI to Businvo**: Updated project branding with live preview link and repository metadata.
 - **Gallery Refinement**: Removed motorcycle (`IMG_3836.jpg`) and phone suit (`fahaman.jpeg`) photos from the active gallery.
 
 ## [1.2.0] - 2026-10-27
 
 ### Added
+
 - Scaler Masterclass Certificate: "Designing Scalable RAG Pipelines" (Oct 21, 2026).
 - be10x Certification: "Unlocking Claude - Advanced AI Tools Session" (Oct 6, 2026).
 - 6 Google Cloud Skill Badges:
@@ -39,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Root project files: `LICENSE`, `SECURITY.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `.env.example`.
 
 ### Changed
+
 - Lightbox profile gallery pruned: removed unneeded beach photo per user preference.
 - Replaced purple gradient on Nexora-AI project with modern cyan accent to adhere strictly to non-negotiable design guidelines.
 - Converted interactive button styling from pill shapes (`rounded-full`) to modern geometric `rounded-xl` corners.
@@ -47,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2026-08-15
 
 ### Added
+
 - Google Cloud Generative AI and Machine Learning completion badges.
 - Power BI Workshop certificate and Simplilearn SEO certificate downloads.
 - Interactive Lightbox gallery with keyboard navigation (Esc, Arrow keys).
@@ -55,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-06-01
 
 ### Added
+
 - Initial production release built with TanStack Start, React 19, and Tailwind CSS.
 - Dark/Light mode theme switcher.
 - Projects showcase featuring Nexora-AI, LearnChart, HelpHive, and Ellexo.

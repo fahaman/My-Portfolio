@@ -5,13 +5,17 @@ interface IllustratedThemeToggleProps {
   className?: string;
 }
 
-export function IllustratedThemeToggle({ className = "" }: IllustratedThemeToggleProps) {
+export function IllustratedThemeToggle({
+  className = "",
+}: IllustratedThemeToggleProps) {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const current = (document.documentElement.getAttribute("data-theme") as "dark" | "light") || "dark";
+    const current =
+      (document.documentElement.getAttribute("data-theme") as
+        "dark" | "light") || "dark";
     setTheme(current);
   }, []);
 
@@ -29,7 +33,11 @@ export function IllustratedThemeToggle({ className = "" }: IllustratedThemeToggl
   const isDark = theme === "dark";
 
   if (!mounted) {
-    return <div className={`h-8 w-16 rounded-full bg-surface border border-border ${className}`} />;
+    return (
+      <div
+        className={`h-8 w-16 rounded-full bg-surface border border-border ${className}`}
+      />
+    );
   }
 
   return (

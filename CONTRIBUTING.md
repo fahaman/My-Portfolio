@@ -5,6 +5,7 @@ Thank you for your interest in contributing to Mohammed Fahaman's portfolio repo
 ## Development Workflow
 
 1. **Clone & Install Dependencies**
+
    ```bash
    git clone https://github.com/fahaman/My-Portfolio.git
    cd My-Portfolio
@@ -13,15 +14,19 @@ Thank you for your interest in contributing to Mohammed Fahaman's portfolio repo
 
 2. **Configure Environment**
    Copy the `.env.example` template to `.env`:
+
    ```bash
    cp .env.example .env
    ```
+
    Add your testing EmailJS keys if working on contact form interactions.
 
 3. **Start the Local Development Server**
+
    ```bash
    npm run dev
    ```
+
    Open `http://localhost:3000` (or the port specified by Vite) in your browser.
 
 4. **Code Quality & Verification**

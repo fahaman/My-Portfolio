@@ -17,11 +17,19 @@ const TECHNOLOGIES: TechItem[] = [
   {
     name: "Context API",
     icon: (
-      <svg className="h-5 w-5 fill-none stroke-current text-sky-300" viewBox="0 0 24 24" strokeWidth="2">
+      <svg
+        className="h-5 w-5 fill-none stroke-current text-sky-300"
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+      >
         <circle cx="12" cy="5" r="3" />
         <circle cx="5" cy="19" r="3" />
         <circle cx="19" cy="19" r="3" />
-        <path d="M12 8v4m0 0l-5 4m5-4l5 4" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M12 8v4m0 0l-5 4m5-4l5 4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -60,7 +68,10 @@ const TECHNOLOGIES: TechItem[] = [
   {
     name: "Node.js",
     icon: (
-      <svg className="h-5 w-5 fill-current text-emerald-500" viewBox="0 0 24 24">
+      <svg
+        className="h-5 w-5 fill-current text-emerald-500"
+        viewBox="0 0 24 24"
+      >
         <path d="M12 2L2 7.7v11.6L12 25l10-5.7V7.7L12 2zm1.2 18.1c-.2.1-.5.2-.7.2-.6 0-.9-.3-.9-.9v-3.8c0-.6.3-.9.9-.9.2 0 .5.1.7.2l3.3 1.9c.2.1.3.3.3.6 0 .3-.1.5-.3.6l-3.3 2.1zm-4.4-6.4V9.9c0-.6-.3-.9-.9-.9-.2 0-.5.1-.7.2L3.9 11c-.2.1-.3.3-.3.6 0 .3.1.5.3.6l3.3 1.9c.2.1.5.2.7.2.6 0 .9-.3.9-.9v-.5z" />
       </svg>
     ),
@@ -76,7 +87,10 @@ const TECHNOLOGIES: TechItem[] = [
   {
     name: "MongoDB",
     icon: (
-      <svg className="h-5 w-5 fill-current text-emerald-400" viewBox="0 0 24 24">
+      <svg
+        className="h-5 w-5 fill-current text-emerald-400"
+        viewBox="0 0 24 24"
+      >
         <path d="M12 0C11.5 0 11.2.3 11 .7C9.8 3.2 5 11.6 5 16.5C5 20.6 8.1 24 12 24s7-3.4 7-7.5c0-4.9-4.8-13.3-6-15.8c-.2-.4-.5-.7-1-.7zm0 2.2c.4 1 3.8 8.1 4.7 12.3H12V2.2z" />
       </svg>
     ),
@@ -101,8 +115,20 @@ const TECHNOLOGIES: TechItem[] = [
     name: "TanStack",
     icon: (
       <svg className="h-5 w-5 fill-current text-amber-500" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none" />
-        <path d="M7 12h10M12 7l5 5-5 5" stroke="currentColor" strokeWidth="2" fill="none" />
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+        />
+        <path
+          d="M7 12h10M12 7l5 5-5 5"
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+        />
       </svg>
     ),
   },
@@ -133,7 +159,10 @@ const TECHNOLOGIES: TechItem[] = [
   {
     name: "Supabase",
     icon: (
-      <svg className="h-5 w-5 fill-current text-emerald-400" viewBox="0 0 24 24">
+      <svg
+        className="h-5 w-5 fill-current text-emerald-400"
+        viewBox="0 0 24 24"
+      >
         <path d="M21.36 10.36L12 21.68v-7.32H2.64L12 2.32v7.32h9.36z" />
       </svg>
     ),

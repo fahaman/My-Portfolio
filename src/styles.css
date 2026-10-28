@@ -16,29 +16,30 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
 
-  --color-background:             var(--background);
-  --color-foreground:             var(--foreground);
-  --color-card:                   var(--card);
-  --color-card-foreground:        var(--card-foreground);
-  --color-popover:                var(--popover);
-  --color-popover-foreground:     var(--popover-foreground);
-  --color-primary:                var(--primary);
-  --color-primary-foreground:     var(--primary-foreground);
-  --color-secondary:              var(--secondary);
-  --color-secondary-foreground:   var(--secondary-foreground);
-  --color-muted:                  var(--muted);
-  --color-muted-foreground:       var(--muted-foreground);
-  --color-accent:                 var(--accent);
-  --color-accent-foreground:      var(--accent-foreground);
-  --color-destructive:            var(--destructive);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border:                 var(--border);
-  --color-input:                  var(--input);
-  --color-ring:                   var(--ring);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+  --font-display:
+    "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -53,38 +54,38 @@ html[data-theme="dark"],
   color-scheme: dark;
 
   /* Palette - Warm Charcoal, Ivory, Stone Gray, Champagne Gold, Muted Sage */
-  --bg:               #111210;
-  --surface:          #181916;
-  --surface-elevated: #20211E;
-  --text-primary:     #F4F0E8;
-  --text-secondary:   #B5B1A8;
-  --text-muted:       #85847D;
-  --borders:          #353630;
-  --accent-gold:      #C7A878;
-  --accent-gold-hover:#DEC69F;
-  --success-sage:     #8BAF91;
+  --bg: #111210;
+  --surface: #181916;
+  --surface-elevated: #20211e;
+  --text-primary: #f4f0e8;
+  --text-secondary: #b5b1a8;
+  --text-muted: #85847d;
+  --borders: #353630;
+  --accent-gold: #c7a878;
+  --accent-gold-hover: #dec69f;
+  --success-sage: #8baf91;
 
   /* Semantic UI Tokens */
-  --background:             var(--bg);
-  --foreground:             var(--text-primary);
-  --card:                   var(--surface);
-  --card-foreground:        var(--text-primary);
-  --card-elevated:          var(--surface-elevated);
-  --popover:                var(--surface);
-  --popover-foreground:     var(--text-primary);
-  --primary:                var(--accent-gold);
-  --primary-foreground:     #111210;
-  --secondary:              var(--surface-elevated);
-  --secondary-foreground:   var(--text-primary);
-  --muted:                  var(--surface-elevated);
-  --muted-foreground:       var(--text-secondary);
-  --accent:                 var(--accent-gold);
-  --accent-foreground:      #111210;
-  --destructive:            #D96B6B;
-  --destructive-foreground: #FFFFFF;
-  --border:                 var(--borders);
-  --input:                  var(--borders);
-  --ring:                   var(--accent-gold);
+  --background: var(--bg);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --card-elevated: var(--surface-elevated);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent-gold);
+  --primary-foreground: #111210;
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-elevated);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--accent-gold);
+  --accent-foreground: #111210;
+  --destructive: #d96b6b;
+  --destructive-foreground: #ffffff;
+  --border: var(--borders);
+  --input: var(--borders);
+  --ring: var(--accent-gold);
 }
 
 /* LIGHT THEME */
@@ -94,45 +95,47 @@ html[data-theme="light"],
   color-scheme: light;
 
   /* Palette - Ivory, Charcoal, Bronze/Champagne, Muted Sage */
-  --bg:               #F5F2EB;
-  --surface:          #FFFEFA;
-  --surface-elevated: #ECE7DC;
-  --text-primary:     #20211E;
-  --text-secondary:   #5F6059;
-  --text-muted:       #77776F;
-  --borders:          #DCD6C9;
-  --accent-gold:      #8A6A3F;
-  --accent-gold-hover:#6D512F;
-  --success-sage:     #3F7650;
+  --bg: #f5f2eb;
+  --surface: #fffefa;
+  --surface-elevated: #ece7dc;
+  --text-primary: #20211e;
+  --text-secondary: #5f6059;
+  --text-muted: #77776f;
+  --borders: #dcd6c9;
+  --accent-gold: #8a6a3f;
+  --accent-gold-hover: #6d512f;
+  --success-sage: #3f7650;
 
   /* Semantic UI Tokens */
-  --background:             var(--bg);
-  --foreground:             var(--text-primary);
-  --card:                   var(--surface);
-  --card-foreground:        var(--text-primary);
-  --card-elevated:          var(--surface-elevated);
-  --popover:                var(--surface);
-  --popover-foreground:     var(--text-primary);
-  --primary:                var(--accent-gold);
-  --primary-foreground:     #FFFFFF;
-  --secondary:              var(--surface-elevated);
-  --secondary-foreground:   var(--text-primary);
-  --muted:                  var(--surface-elevated);
-  --muted-foreground:       var(--text-secondary);
-  --accent:                 var(--accent-gold);
-  --accent-foreground:      #FFFFFF;
-  --destructive:            #C83838;
-  --destructive-foreground: #FFFFFF;
-  --border:                 var(--borders);
-  --input:                  var(--borders);
-  --ring:                   var(--accent-gold);
+  --background: var(--bg);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --card-elevated: var(--surface-elevated);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent-gold);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-elevated);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--accent-gold);
+  --accent-foreground: #ffffff;
+  --destructive: #c83838;
+  --destructive-foreground: #ffffff;
+  --border: var(--borders);
+  --input: var(--borders);
+  --ring: var(--accent-gold);
 }
 
 /* ══════════════════════════════════════════════════════════════════
    Base Layer: Clean, Solid Background (Zero Artificial Noise or Grids)
 ══════════════════════════════════════════════════════════════════ */
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     border-color: var(--border);
   }
@@ -153,10 +156,17 @@ html[data-theme="light"],
     font-weight: 400;
     line-height: 1.65;
     min-height: 100dvh;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -175,11 +185,14 @@ html[data-theme="light"],
     text-decoration: none;
   }
 
-  code, pre, kbd {
+  code,
+  pre,
+  kbd {
     font-family: var(--font-mono);
   }
 
-  img, video {
+  img,
+  video {
     max-width: 100%;
     height: auto;
   }

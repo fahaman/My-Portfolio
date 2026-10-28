@@ -1,6 +1,7 @@
 # System Architecture
 
 ## Architecture Diagram
+
 ```mermaid
 graph TD
     Client[Browser / Client] --> CDN[Cloudflare / Edge CDN]
@@ -12,6 +13,7 @@ graph TD
 ```
 
 ## Architectural Highlights
+
 - **Isomorphic Rendering**: Server-side rendering paired with client-side hydration via TanStack Start.
 - **Type-Safe Routing**: File-based routing with automatic route tree code generation (`src/routeTree.gen.ts`).
 - **Decoupled Messaging**: Contact inquiries directly authenticated and sent via EmailJS browser SDK, avoiding unnecessary backend server attack surfaces.

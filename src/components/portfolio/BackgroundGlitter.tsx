@@ -76,7 +76,8 @@ export function BackgroundGlitter() {
 
       ctx.clearRect(0, 0, width, height);
 
-      const isDark = document.documentElement.getAttribute("data-theme") !== "light";
+      const isDark =
+        document.documentElement.getAttribute("data-theme") !== "light";
 
       // Dark vs Light color tints
       // Dark: Champagne (#C7A878) and soft Ivory (#F4F0E8)

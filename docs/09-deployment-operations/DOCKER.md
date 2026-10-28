@@ -1,6 +1,7 @@
 # Containerization Guide
 
 Optional Dockerfile for standalone container hosting:
+
 ```dockerfile
 FROM node:20-alpine AS builder
 WORKDIR /app

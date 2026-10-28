@@ -1,13 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ShieldCheck, Mail, Lock, Eye, FileText, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ShieldCheck,
+  Mail,
+  Lock,
+  Eye,
+  FileText,
+  CheckCircle2,
+} from "lucide-react";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
       { title: "Privacy Policy | Mohammed Fahaman" },
-      { name: "description", content: "Privacy policy for Mohammed Fahaman's developer portfolio, detailing data practices and contact form security." },
+      {
+        name: "description",
+        content:
+          "Privacy policy for Mohammed Fahaman's developer portfolio, detailing data practices and contact form security.",
+      },
       { property: "og:title", content: "Privacy Policy | Mohammed Fahaman" },
-      { property: "og:description", content: "Details on personal information protection and communications on mohammedfahaman.dev" },
+      {
+        property: "og:description",
+        content:
+          "Details on personal information protection and communications on mohammedfahaman.dev",
+      },
     ],
     links: [{ rel: "canonical", href: "/privacy" }],
   }),
@@ -29,7 +45,9 @@ function PrivacyPolicyPage() {
           </Link>
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-mono text-muted-foreground">GDPR & DPDP Aligned</span>
+            <span className="text-xs font-mono text-muted-foreground">
+              GDPR & DPDP Aligned
+            </span>
           </div>
         </div>
       </header>
@@ -55,8 +73,12 @@ function PrivacyPolicyPage() {
               1. Overview & Scope
             </h2>
             <p className="mt-3">
-              This Privacy Policy applies to the personal developer portfolio website of <strong className="text-foreground">Mohammed Fahaman</strong>.
-              I respect your privacy and am committed to protecting any personal information you provide when visiting this site or communicating with me.
+              This Privacy Policy applies to the personal developer portfolio
+              website of{" "}
+              <strong className="text-foreground">Mohammed Fahaman</strong>. I
+              respect your privacy and am committed to protecting any personal
+              information you provide when visiting this site or communicating
+              with me.
             </p>
           </section>
 
@@ -67,24 +89,36 @@ function PrivacyPolicyPage() {
             </h2>
             <div className="mt-3 space-y-3">
               <p>
-                I only collect personal information that you voluntarily choose to share through the Contact form or via direct email correspondence:
+                I only collect personal information that you voluntarily choose
+                to share through the Contact form or via direct email
+                correspondence:
               </p>
               <ul className="space-y-2 pl-4">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                  <span><strong>Full Name:</strong> To identify who is contacting me.</span>
+                  <span>
+                    <strong>Full Name:</strong> To identify who is contacting
+                    me.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                  <span><strong>Email Address:</strong> To reply to your message, inquiries, or business opportunities.</span>
+                  <span>
+                    <strong>Email Address:</strong> To reply to your message,
+                    inquiries, or business opportunities.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                  <span><strong>Message & Subject Content:</strong> Project briefs, questions, or opportunities you submit.</span>
+                  <span>
+                    <strong>Message & Subject Content:</strong> Project briefs,
+                    questions, or opportunities you submit.
+                  </span>
                 </li>
               </ul>
               <p className="text-xs text-muted-foreground mt-2">
-                No sensitive financial data, biometric information, or intrusive device trackers are collected by this portfolio.
+                No sensitive financial data, biometric information, or intrusive
+                device trackers are collected by this portfolio.
               </p>
             </div>
           </section>
@@ -95,16 +129,26 @@ function PrivacyPolicyPage() {
               3. How Information is Processed & Shared
             </h2>
             <p className="mt-3">
-              Your contact requests are processed using <strong className="text-foreground">EmailJS</strong>, a secure service provider that delivers messages directly to my email inbox.
+              Your contact requests are processed using{" "}
+              <strong className="text-foreground">EmailJS</strong>, a secure
+              service provider that delivers messages directly to my email
+              inbox.
             </p>
             <ul className="mt-3 space-y-2 pl-4">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                <span>Your information is strictly used to evaluate professional inquiries, job opportunities, and software collaboration requests.</span>
+                <span>
+                  Your information is strictly used to evaluate professional
+                  inquiries, job opportunities, and software collaboration
+                  requests.
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                <span>Your data is <strong>never sold, rented, or monetized</strong> with any third-party advertisers or data brokers.</span>
+                <span>
+                  Your data is <strong>never sold, rented, or monetized</strong>{" "}
+                  with any third-party advertisers or data brokers.
+                </span>
               </li>
             </ul>
           </section>
@@ -115,16 +159,28 @@ function PrivacyPolicyPage() {
               4. Data Retention & Your Rights
             </h2>
             <p className="mt-3">
-              Inquiries received via the contact form are retained only for as long as necessary to conduct professional dialogue. You hold the following rights:
+              Inquiries received via the contact form are retained only for as
+              long as necessary to conduct professional dialogue. You hold the
+              following rights:
             </p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-white/10 bg-background/50 p-4">
-                <h3 className="font-semibold text-foreground">Right to Access</h3>
-                <p className="mt-1 text-xs">Request confirmation of whether your inquiry data is held and obtain a copy.</p>
+                <h3 className="font-semibold text-foreground">
+                  Right to Access
+                </h3>
+                <p className="mt-1 text-xs">
+                  Request confirmation of whether your inquiry data is held and
+                  obtain a copy.
+                </p>
               </div>
               <div className="rounded-xl border border-white/10 bg-background/50 p-4">
-                <h3 className="font-semibold text-foreground">Right to Erasure</h3>
-                <p className="mt-1 text-xs">Request permanent deletion of past messages and contact records at any time.</p>
+                <h3 className="font-semibold text-foreground">
+                  Right to Erasure
+                </h3>
+                <p className="mt-1 text-xs">
+                  Request permanent deletion of past messages and contact
+                  records at any time.
+                </p>
               </div>
             </div>
           </section>

@@ -32,7 +32,10 @@ const NAV_ITEMS = [
   { id: "contact", label: "Contact", icon: Mail },
 ];
 
-export function FloatingNavbar({ onOpenCv, onAvatarClick }: FloatingNavbarProps) {
+export function FloatingNavbar({
+  onOpenCv,
+  onAvatarClick,
+}: FloatingNavbarProps) {
   const [activeSection, setActiveSection] = useState<string>("top");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,7 +62,7 @@ export function FloatingNavbar({ onOpenCv, onAvatarClick }: FloatingNavbarProps)
             }
           });
         },
-        { rootMargin: "-20% 0px -60% 0px" }
+        { rootMargin: "-20% 0px -60% 0px" },
       );
 
       observer.observe(el);
@@ -194,7 +197,11 @@ export function FloatingNavbar({ onOpenCv, onAvatarClick }: FloatingNavbarProps)
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {mobileMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
             </button>
           </div>
         </div>

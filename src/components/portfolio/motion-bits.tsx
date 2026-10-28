@@ -1,7 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export function Counter({ to, suffix = "", duration = 1.6 }: { to: number; suffix?: string; duration?: number }) {
+export function Counter({
+  to,
+  suffix = "",
+  duration = 1.6,
+}: {
+  to: number;
+  suffix?: string;
+  duration?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const [val, setVal] = useState(0);
@@ -20,10 +28,25 @@ export function Counter({ to, suffix = "", duration = 1.6 }: { to: number; suffi
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration]);
 
-  return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {val.toLocaleString()}
+      {suffix}
+    </span>
+  );
 }
 
-export function Reveal({ children, delay = 0, y = 24, className = "" }: { children: React.ReactNode; delay?: number; y?: number; className?: string }) {
+export function Reveal({
+  children,
+  delay = 0,
+  y = 24,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
   return (
     <motion.div
       className={className}
@@ -37,7 +60,13 @@ export function Reveal({ children, delay = 0, y = 24, className = "" }: { childr
   );
 }
 
-export function MagneticButton({ children, className = "", onClick, href, as = "button" }: {
+export function MagneticButton({
+  children,
+  className = "",
+  onClick,
+  href,
+  as = "button",
+}: {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
@@ -54,7 +83,9 @@ export function MagneticButton({ children, className = "", onClick, href, as = "
       const y = e.clientY - (r.top + r.height / 2);
       el.style.transform = `translate(${x * 0.15}px, ${y * 0.2}px)`;
     };
-    const onLeave = () => { el.style.transform = "translate(0,0)"; };
+    const onLeave = () => {
+      el.style.transform = "translate(0,0)";
+    };
     el.addEventListener("mousemove", onMove);
     el.addEventListener("mouseleave", onLeave);
     return () => {
@@ -63,10 +94,26 @@ export function MagneticButton({ children, className = "", onClick, href, as = "
     };
   }, []);
 
-  const Tag: any = as;
+  if (as === "a") {
+    return (
+      <a
+        ref={ref as unknown as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        onClick={onClick}
+        className={`transition-transform duration-200 ease-out will-change-transform ${className}`}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <Tag ref={ref} href={href} onClick={onClick} className={`transition-transform duration-200 ease-out will-change-transform ${className}`}>
+    <button
+      ref={ref as unknown as React.RefObject<HTMLButtonElement>}
+      onClick={onClick}
+      className={`transition-transform duration-200 ease-out will-change-transform ${className}`}
+    >
       {children}
-    </Tag>
+    </button>
   );
 }

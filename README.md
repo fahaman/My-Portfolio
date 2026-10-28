@@ -37,21 +37,26 @@ A modern, high-performance, and accessible developer portfolio application built
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/fahaman/My-Portfolio.git
    cd My-Portfolio
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables:**
+
    ```bash
    cp .env.example .env
    ```
+
    Provide your EmailJS service credentials in `.env`:
+
    ```env
    VITE_EMAILJS_SERVICE_ID=your_service_id
    VITE_EMAILJS_TEMPLATE_ID=your_template_id
@@ -59,12 +64,15 @@ A modern, high-performance, and accessible developer portfolio application built
    ```
 
 4. **Run development server:**
+
    ```bash
    npm run dev
    ```
+
    Open `http://localhost:3000` in your web browser.
 
 5. **Build for production:**
+
    ```bash
    npm run build
    ```
@@ -77,6 +85,7 @@ A modern, high-performance, and accessible developer portfolio application built
 ## Documentation
 
 Full architectural documentation is available in the `docs/` directory:
+
 - [Planning & Requirements](docs/01-planning/PROJECT_REQUIREMENTS.md)
 - [Design System & UI/UX](docs/02-design/DESIGN_SYSTEM.md)
 - [System Architecture](docs/03-architecture/ARCHITECTURE.md)

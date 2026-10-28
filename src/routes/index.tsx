@@ -1,16 +1,46 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowUpRight, Github, Linkedin, Mail, Download, MapPin,
-  ExternalLink, Calendar, CheckCircle2, Send,
-  GraduationCap, X, ChevronLeft, ChevronRight,
-  Maximize2, FileText, ZoomIn, ZoomOut, Phone, Sun, Moon,
-  Layers, Server, Database, Cloud, Wrench, Award,
-  Sparkles, Terminal, BookOpen, Instagram, Ghost
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  Download,
+  MapPin,
+  ExternalLink,
+  Calendar,
+  CheckCircle2,
+  Send,
+  GraduationCap,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  FileText,
+  ZoomIn,
+  ZoomOut,
+  Phone,
+  Sun,
+  Moon,
+  Layers,
+  Server,
+  Database,
+  Cloud,
+  Wrench,
+  Award,
+  Sparkles,
+  Terminal,
+  BookOpen,
+  Instagram,
+  Ghost,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "@/lib/send-mail";
+import {
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  EMAILJS_PUBLIC_KEY,
+} from "@/lib/send-mail";
 import { Counter, Reveal } from "@/components/portfolio/motion-bits";
 import { BackgroundGlitter } from "@/components/portfolio/BackgroundGlitter";
 import { CursorGlow } from "@/components/portfolio/CursorGlow";
@@ -20,10 +50,25 @@ import { SkillsTicker } from "@/components/portfolio/SkillsTicker";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mohammed Fahaman | Full-Stack Web Developer | MERN-Stack Developer" },
-      { name: "description", content: "Portfolio of Mohammed Fahaman — Full-Stack Web Developer & MERN-Stack Developer building scalable web applications, modern APIs, and high-performance cloud architectures." },
-      { property: "og:title", content: "Mohammed Fahaman | Full-Stack Web Developer | MERN-Stack Developer" },
-      { property: "og:description", content: "Full-Stack Web Developer & MERN-Stack Developer building high-impact web products and scalable systems." },
+      {
+        title:
+          "Mohammed Fahaman | Full-Stack Web Developer | MERN-Stack Developer",
+      },
+      {
+        name: "description",
+        content:
+          "Portfolio of Mohammed Fahaman — Full-Stack Web Developer & MERN-Stack Developer building scalable web applications, modern APIs, and high-performance cloud architectures.",
+      },
+      {
+        property: "og:title",
+        content:
+          "Mohammed Fahaman | Full-Stack Web Developer | MERN-Stack Developer",
+      },
+      {
+        property: "og:description",
+        content:
+          "Full-Stack Web Developer & MERN-Stack Developer building high-impact web products and scalable systems.",
+      },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -59,7 +104,9 @@ function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    const current = (document.documentElement.getAttribute("data-theme") as "dark" | "light") || "dark";
+    const current =
+      (document.documentElement.getAttribute("data-theme") as
+        "dark" | "light") || "dark";
     setTheme(current);
   }, []);
 
@@ -157,7 +204,9 @@ function CvModal({ isOpen, onClose }: CvModalProps) {
               >
                 <ZoomOut className="h-3.5 w-3.5" />
               </button>
-              <span className="min-w-[40px] text-center font-mono text-[11px]">{zoomLevel}%</span>
+              <span className="min-w-[40px] text-center font-mono text-[11px]">
+                {zoomLevel}%
+              </span>
               <button
                 type="button"
                 onClick={() => setZoomLevel((z) => Math.min(175, z + 25))}
@@ -232,12 +281,20 @@ interface ProfileLightboxProps {
   onChangeIndex: (index: number) => void;
 }
 
-function ProfileLightbox({ activeIndex, onClose, onChangeIndex }: ProfileLightboxProps) {
+function ProfileLightbox({
+  activeIndex,
+  onClose,
+  onChangeIndex,
+}: ProfileLightboxProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") onChangeIndex((activeIndex + 1) % PROFILE_IMAGES.length);
-      if (e.key === "ArrowLeft") onChangeIndex((activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length);
+      if (e.key === "ArrowRight")
+        onChangeIndex((activeIndex + 1) % PROFILE_IMAGES.length);
+      if (e.key === "ArrowLeft")
+        onChangeIndex(
+          (activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length,
+        );
     };
     window.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
@@ -270,7 +327,9 @@ function ProfileLightbox({ activeIndex, onClose, onChangeIndex }: ProfileLightbo
         <button
           onClick={(e) => {
             e.stopPropagation();
-            onChangeIndex((activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length);
+            onChangeIndex(
+              (activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length,
+            );
           }}
           className="absolute left-3 z-10 grid h-10 w-10 place-items-center rounded-lg border border-border bg-card/90 text-foreground backdrop-blur transition hover:bg-card"
           aria-label="Previous photo"
@@ -294,7 +353,9 @@ function ProfileLightbox({ activeIndex, onClose, onChangeIndex }: ProfileLightbo
             key={i}
             onClick={() => onChangeIndex(i)}
             className={`h-1.5 rounded-full transition-all duration-200 ${
-              activeIndex === i ? "w-6 bg-primary" : "w-2 bg-border hover:bg-muted-foreground"
+              activeIndex === i
+                ? "w-6 bg-primary"
+                : "w-2 bg-border hover:bg-muted-foreground"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
@@ -384,7 +445,13 @@ function Portfolio() {
 /* ──────────────────────────────────────────────────────────────────────────
    HERO SECTION (Art-Directed Editorial Composition)
    ────────────────────────────────────────────────────────────────────────── */
-function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick: () => void }) {
+function Hero({
+  onOpenCv,
+  onAvatarClick,
+}: {
+  onOpenCv: () => void;
+  onAvatarClick: () => void;
+}) {
   return (
     <section id="top" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -409,7 +476,9 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
               transition={{ duration: 0.45, delay: 0.08 }}
               className="mt-6 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.1]"
             >
-              Building digital products that <span className="italic font-normal text-primary">scale</span> and solve real problems.
+              Building digital products that{" "}
+              <span className="italic font-normal text-primary">scale</span> and
+              solve real problems.
             </motion.h1>
 
             {/* Concise Professional Introduction */}
@@ -419,7 +488,10 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
               transition={{ duration: 0.45, delay: 0.16 }}
               className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
-              I build modern web applications with thoughtful interfaces, reliable backend systems, and maintainable architecture. My focus is on creating practical software that performs well and solves real user problems.
+              I build modern web applications with thoughtful interfaces,
+              reliable backend systems, and maintainable architecture. My focus
+              is on creating practical software that performs well and solves
+              real user problems.
             </motion.p>
 
             {/* Primary & Secondary Actions */}
@@ -511,8 +583,12 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-65" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
                   <div>
-                    <p className="font-display text-sm font-semibold">Mohammed Fahaman</p>
-                    <p className="text-xs text-white/80">Full-Stack &amp; MERN Engineer</p>
+                    <p className="font-display text-sm font-semibold">
+                      Mohammed Fahaman
+                    </p>
+                    <p className="text-xs text-white/80">
+                      Full-Stack &amp; MERN Engineer
+                    </p>
                   </div>
                   <span className="grid h-7 w-7 place-items-center rounded-lg bg-black/40 text-white backdrop-blur-xs">
                     <Maximize2 className="h-3.5 w-3.5" />
@@ -528,7 +604,9 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
                 className="absolute -top-3 -left-3 hidden sm:flex items-center gap-2 rounded-lg border border-border bg-card/95 px-3 py-1.5 text-xs shadow-md backdrop-blur-xs"
               >
                 <span className="h-2 w-2 rounded-full bg-primary" />
-                <span className="font-medium text-foreground">React &amp; TypeScript</span>
+                <span className="font-medium text-foreground">
+                  React &amp; TypeScript
+                </span>
               </motion.div>
 
               {/* BADGE 2: Production-Level Applications (Bottom Right) */}
@@ -539,7 +617,9 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
                 className="absolute -bottom-3 -right-3 hidden sm:flex items-center gap-2 rounded-lg border border-border bg-card/95 px-3 py-1.5 text-xs shadow-md backdrop-blur-xs"
               >
                 <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                <span className="font-medium text-foreground">Production-Level Applications</span>
+                <span className="font-medium text-foreground">
+                  Production-Level Applications
+                </span>
               </motion.div>
             </motion.div>
           </div>
@@ -548,7 +628,6 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
     </section>
   );
 }
-
 
 /* ──────────────────────────────────────────────────────────────────────────
    PROJECTS SECTION (Visual Portfolio of Real Work, Not Identical Cards)
@@ -569,13 +648,21 @@ const FEATURED_HERO_PROJECT: ProjectData = {
   title: "LearnChart",
   category: "AI Trading Education Platform",
   year: "2025",
-  description: "An interactive full-stack learning platform that teaches technical trading through chart pattern analysis, paper trading simulations, and AI-assisted insights. Built with role-based student and instructor access, responsive dashboards, and TradingView charting integration.",
+  description:
+    "An interactive full-stack learning platform that teaches technical trading through chart pattern analysis, paper trading simulations, and AI-assisted insights. Built with role-based student and instructor access, responsive dashboards, and TradingView charting integration.",
   highlights: [
     "Optimized MongoDB aggregations, reducing query response times by 30% under concurrency",
     "Implemented JWT Authentication with Role-Based Access Control (RBAC) and protected RESTful APIs",
     "Interactive TradingView charting engine supporting paper trading execution and progress tracking",
   ],
-  stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Prisma ORM", "TradingView"],
+  stack: [
+    "React.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Prisma ORM",
+    "TradingView",
+  ],
   liveUrl: "https://learnchart.vercel.app/",
   githubUrl: "https://github.com/fahaman/LearnChart",
 };
@@ -585,13 +672,20 @@ const SUPPORTING_PROJECTS: ProjectData[] = [
     title: "Businvo",
     category: "Full-Stack SaaS Platform",
     year: "2025",
-    description: "A modern business invoicing and operations application built with TanStack Start, React Query, and Tailwind CSS. Features dynamic invoice and estimate generation, high-performance client routing, and cached state management.",
+    description:
+      "A modern business invoicing and operations application built with TanStack Start, React Query, and Tailwind CSS. Features dynamic invoice and estimate generation, high-performance client routing, and cached state management.",
     highlights: [
       "Dynamic invoice & estimate builder with instant PDF calculation",
       "TanStack Start server-side rendering with full route safety",
       "React Query cached state management eliminating redundant API calls",
     ],
-    stack: ["TanStack Start", "React Query", "Tailwind CSS", "TypeScript", "Vite"],
+    stack: [
+      "TanStack Start",
+      "React Query",
+      "Tailwind CSS",
+      "TypeScript",
+      "Vite",
+    ],
     liveUrl: "https://nexora-ai-sigma-two.vercel.app",
     githubUrl: "https://github.com/fahaman/Businvo",
   },
@@ -599,7 +693,8 @@ const SUPPORTING_PROJECTS: ProjectData[] = [
     title: "HelpHive",
     category: "Community Support Marketplace",
     year: "2024",
-    description: "A community marketplace connecting residents with verified local service professionals. Features end-to-end authentication, provider onboarding, and clean CRUD operations built on normalized data schemas.",
+    description:
+      "A community marketplace connecting residents with verified local service professionals. Features end-to-end authentication, provider onboarding, and clean CRUD operations built on normalized data schemas.",
     highlights: [
       "Provider onboarding pipeline with credential verification",
       "RESTful API backend supporting verified provider listings",
@@ -616,8 +711,12 @@ const ADDITIONAL_PROJECTS: ProjectData[] = [
     title: "LearnChart Trading Agent",
     category: "Autonomous AI System",
     year: "2025",
-    description: "Autonomous trading bot utilizing Anthropic Claude 3.5 Sonnet to parse market structures and execute perpetual futures on Hyperliquid with strict programmatic risk parameters.",
-    highlights: ["Anthropic Claude context reasoning", "Hyperliquid API execution on Render"],
+    description:
+      "Autonomous trading bot utilizing Anthropic Claude 3.5 Sonnet to parse market structures and execute perpetual futures on Hyperliquid with strict programmatic risk parameters.",
+    highlights: [
+      "Anthropic Claude context reasoning",
+      "Hyperliquid API execution on Render",
+    ],
     stack: ["Python", "Claude 3.5", "Hyperliquid API", "Render"],
     liveUrl: "https://learnchart-trading-agent.onrender.com/",
     githubUrl: "https://github.com/fahaman/LearnChart-Trading-Agent",
@@ -626,7 +725,8 @@ const ADDITIONAL_PROJECTS: ProjectData[] = [
     title: "Employee Management System",
     category: "Enterprise HR Portal",
     year: "2024",
-    description: "Workforce directory and departmental allocation platform streamlining employee records, performance reviews, and administrative permission workflows.",
+    description:
+      "Workforce directory and departmental allocation platform streamlining employee records, performance reviews, and administrative permission workflows.",
     highlights: ["Multi-tier role management", "Centralized staff directory"],
     stack: ["React.js", "Node.js", "Express.js", "MongoDB"],
     liveUrl: "https://employee-management-system-two-swart.vercel.app/",
@@ -636,27 +736,38 @@ const ADDITIONAL_PROJECTS: ProjectData[] = [
     title: "MediaSearch",
     category: "Media Indexing Engine",
     year: "2024",
-    description: "High-performance multimedia search and discovery engine featuring real-time debounced queries, responsive media cards, and rating metadata.",
-    highlights: ["Debounced real-time REST API consumption", "Responsive modular UI"],
+    description:
+      "High-performance multimedia search and discovery engine featuring real-time debounced queries, responsive media cards, and rating metadata.",
+    highlights: [
+      "Debounced real-time REST API consumption",
+      "Responsive modular UI",
+    ],
     stack: ["JavaScript", "React.js", "REST APIs", "CSS Modules"],
-    liveUrl: "https://media-search-liyyyepoo-mohammedfahaman5-3784s-projects.vercel.app/",
+    liveUrl:
+      "https://media-search-liyyyepoo-mohammedfahaman5-3784s-projects.vercel.app/",
     githubUrl: "https://github.com/fahaman/MediaSearch",
   },
 ];
 
 function Projects() {
   return (
-    <section id="projects" className="scroll-mt-24 py-24 border-t border-border/60">
+    <section
+      id="projects"
+      className="scroll-mt-24 py-24 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section Header */}
         <Reveal>
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-mono tracking-wider text-primary">PORTFOLIO</span>
+            <span className="text-xs font-mono tracking-wider text-primary">
+              PORTFOLIO
+            </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Selected Projects
             </h2>
             <p className="max-w-2xl text-base text-muted-foreground">
-              A selection of applications demonstrating my approach to interface design, backend engineering, and practical problem-solving.
+              A selection of applications demonstrating my approach to interface
+              design, backend engineering, and practical problem-solving.
             </p>
           </div>
         </Reveal>
@@ -665,7 +776,9 @@ function Projects() {
         <Reveal delay={0.05}>
           <div className="mt-12 rounded-2xl border border-border bg-card p-6 sm:p-8 lg:p-10 transition-colors hover:border-primary/50">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span className="font-mono text-primary font-medium">{FEATURED_HERO_PROJECT.category}</span>
+              <span className="font-mono text-primary font-medium">
+                {FEATURED_HERO_PROJECT.category}
+              </span>
               <span className="font-mono">{FEATURED_HERO_PROJECT.year}</span>
             </div>
 
@@ -689,7 +802,10 @@ function Projects() {
 
                 <div className="mt-6 flex flex-wrap gap-2 text-xs font-mono text-muted-foreground">
                   {FEATURED_HERO_PROJECT.stack.map((t) => (
-                    <span key={t} className="rounded-md border border-border bg-background px-2.5 py-1">
+                    <span
+                      key={t}
+                      className="rounded-md border border-border bg-background px-2.5 py-1"
+                    >
                       {t}
                     </span>
                   ))}
@@ -726,14 +842,17 @@ function Projects() {
                 <div className="aspect-[4/3] rounded-xl border border-border bg-card-elevated p-6 flex flex-col justify-between">
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="font-mono">Architecture Spec</span>
-                    <span className="text-emerald-500 font-medium">Production Ready</span>
+                    <span className="text-emerald-500 font-medium">
+                      Production Ready
+                    </span>
                   </div>
                   <div className="space-y-3 my-auto">
                     <div className="text-xs font-mono text-foreground font-semibold">
                       JWT Auth + RBAC Middleware
                     </div>
                     <div className="text-xs text-muted-foreground">
-                      TradingView embedded charting with student progress analytics.
+                      TradingView embedded charting with student progress
+                      analytics.
                     </div>
                     <div className="text-xs text-muted-foreground">
                       MongoDB aggregations tuned for 30% latency reduction.
@@ -755,7 +874,9 @@ function Projects() {
               <div className="flex h-full flex-col justify-between rounded-xl border border-border bg-card p-6 sm:p-7 transition-colors hover:border-primary/50">
                 <div>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="font-mono text-primary">{project.category}</span>
+                    <span className="font-mono text-primary">
+                      {project.category}
+                    </span>
                     <span className="font-mono">{project.year}</span>
                   </div>
                   <h3 className="mt-3 font-display text-xl font-bold text-foreground">
@@ -778,7 +899,10 @@ function Projects() {
                 <div className="mt-6 border-t border-border pt-4">
                   <div className="flex flex-wrap gap-1.5 text-xs font-mono text-muted-foreground">
                     {project.stack.map((t) => (
-                      <span key={t} className="rounded-md border border-border bg-background px-2 py-0.5">
+                      <span
+                        key={t}
+                        className="rounded-md border border-border bg-background px-2 py-0.5"
+                      >
                         {t}
                       </span>
                     ))}
@@ -842,7 +966,10 @@ function Projects() {
                 <div className="flex items-center gap-3 shrink-0">
                   <div className="hidden sm:flex gap-1.5 text-[11px] font-mono text-muted-foreground">
                     {item.stack.slice(0, 3).map((s) => (
-                      <span key={s} className="px-2 py-0.5 bg-card border border-border rounded">
+                      <span
+                        key={s}
+                        className="px-2 py-0.5 bg-card border border-border rounded"
+                      >
                         {s}
                       </span>
                     ))}
@@ -887,52 +1014,111 @@ function Skills() {
     {
       category: "Frontend Development",
       icon: <Layers className="h-4 w-4 text-primary" />,
-      description: "Component systems, reactive state, and responsive interfaces.",
-      skills: ["React.js", "Context API", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "TanStack Query", "TanStack Router", "Redux", "Framer Motion", "HTML5 & Semantic Web"],
+      description:
+        "Component systems, reactive state, and responsive interfaces.",
+      skills: [
+        "React.js",
+        "Context API",
+        "Next.js",
+        "TypeScript",
+        "JavaScript (ES6+)",
+        "Tailwind CSS",
+        "TanStack Query",
+        "TanStack Router",
+        "Redux",
+        "Framer Motion",
+        "HTML5 & Semantic Web",
+      ],
     },
     {
       category: "Backend Development",
       icon: <Server className="h-4 w-4 text-primary" />,
-      description: "Robust server logic, RESTful services, and authentication pipelines.",
-      skills: ["Node.js", "Express.js", "Python", "RESTful APIs", "JWT Authentication", "Role-Based Access Control (RBAC)", "API Architecture"],
+      description:
+        "Robust server logic, RESTful services, and authentication pipelines.",
+      skills: [
+        "Node.js",
+        "Express.js",
+        "Python",
+        "RESTful APIs",
+        "JWT Authentication",
+        "Role-Based Access Control (RBAC)",
+        "API Architecture",
+      ],
     },
     {
       category: "Databases & ORMs",
       icon: <Database className="h-4 w-4 text-primary" />,
       description: "Data modeling, schema design, and query optimization.",
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Prisma ORM", "Redis", "Vector Databases"],
+      skills: [
+        "MongoDB",
+        "PostgreSQL",
+        "MySQL",
+        "Prisma ORM",
+        "Redis",
+        "Vector Databases",
+      ],
     },
     {
       category: "Cloud & DevOps",
       icon: <Cloud className="h-4 w-4 text-primary" />,
       description: "Cloud platforms, containerization, and automated hosting.",
-      skills: ["Google Cloud Platform", "Docker", "Vercel", "Render", "CI/CD Workflows", "Cloud Storage"],
+      skills: [
+        "Google Cloud Platform",
+        "Docker",
+        "Vercel",
+        "Render",
+        "CI/CD Workflows",
+        "Cloud Storage",
+      ],
     },
     {
       category: "AI & RAG Integrations",
       icon: <Award className="h-4 w-4 text-primary" />,
-      description: "Generative AI models, prompt design, and retrieval architectures.",
-      skills: ["Vertex AI", "Prompt Design", "Claude 3.5 Sonnet", "RAG Pipelines", "Embeddings", "LLM Integration"],
+      description:
+        "Generative AI models, prompt design, and retrieval architectures.",
+      skills: [
+        "Vertex AI",
+        "Prompt Design",
+        "Claude 3.5 Sonnet",
+        "RAG Pipelines",
+        "Embeddings",
+        "LLM Integration",
+      ],
     },
     {
       category: "Developer Tools & Testing",
       icon: <Wrench className="h-4 w-4 text-primary" />,
-      description: "Version control, workflow efficiency, and web accessibility.",
-      skills: ["Git & GitHub", "Linux CLI", "Postman", "Vite", "VS Code", "Power BI", "WCAG 2.2 AA"],
+      description:
+        "Version control, workflow efficiency, and web accessibility.",
+      skills: [
+        "Git & GitHub",
+        "Linux CLI",
+        "Postman",
+        "Vite",
+        "VS Code",
+        "Power BI",
+        "WCAG 2.2 AA",
+      ],
     },
   ];
 
   return (
-    <section id="skills" className="scroll-mt-24 py-24 border-t border-border/60">
+    <section
+      id="skills"
+      className="scroll-mt-24 py-24 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div>
-            <span className="text-xs font-mono tracking-wider text-primary">CAPABILITIES</span>
+            <span className="text-xs font-mono tracking-wider text-primary">
+              CAPABILITIES
+            </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Technical Skills
             </h2>
             <p className="mt-2 max-w-2xl text-base text-muted-foreground">
-              Technologies and tools I use to build, test, and maintain web applications.
+              Technologies and tools I use to build, test, and maintain web
+              applications.
             </p>
           </div>
         </Reveal>
@@ -940,7 +1126,10 @@ function Skills() {
         {/* Clean Editorial Layout with Subtle Column Separators */}
         <div className="mt-12 grid gap-10 lg:grid-cols-12">
           {skillGroups.map((group, idx) => (
-            <div key={group.category} className="lg:col-span-6 border-b border-border/60 pb-8 last:border-b-0">
+            <div
+              key={group.category}
+              className="lg:col-span-6 border-b border-border/60 pb-8 last:border-b-0"
+            >
               <Reveal delay={idx * 0.04}>
                 <div className="flex items-center gap-2.5">
                   <span className="grid h-7 w-7 place-items-center rounded-md border border-border bg-card">
@@ -975,16 +1164,22 @@ function Skills() {
    ────────────────────────────────────────────────────────────────────────── */
 function Experience() {
   return (
-    <section id="experience" className="scroll-mt-24 py-24 border-t border-border/60">
+    <section
+      id="experience"
+      className="scroll-mt-24 py-24 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div>
-            <span className="text-xs font-mono tracking-wider text-primary">WORK HISTORY</span>
+            <span className="text-xs font-mono tracking-wider text-primary">
+              WORK HISTORY
+            </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Professional Experience
             </h2>
             <p className="mt-2 max-w-2xl text-base text-muted-foreground">
-              Practical engineering support, infrastructure management, and technical collaboration across production events.
+              Practical engineering support, infrastructure management, and
+              technical collaboration across production events.
             </p>
           </div>
         </Reveal>
@@ -1001,23 +1196,36 @@ function Experience() {
                   Aug 2024 – Oct 2025
                 </span>
               </div>
-              <p className="text-xs text-primary font-medium">INF NGO · Karnataka, India</p>
+              <p className="text-xs text-primary font-medium">
+                INF NGO · Karnataka, India
+              </p>
 
               <p className="text-sm text-muted-foreground leading-relaxed pt-2">
-                Delivered on-site software, hardware, and event infrastructure support during large-scale exhibitions.
+                Delivered on-site software, hardware, and event infrastructure
+                support during large-scale exhibitions.
               </p>
               <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground pt-2">
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Resolved 20+ software and infrastructure incidents, ensuring uninterrupted operations across multi-day exhibitions.</span>
+                  <span>
+                    Resolved 20+ software and infrastructure incidents, ensuring
+                    uninterrupted operations across multi-day exhibitions.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Assisted 500+ attendees with real-time software troubleshooting, network configuration, and technical coordination.</span>
+                  <span>
+                    Assisted 500+ attendees with real-time software
+                    troubleshooting, network configuration, and technical
+                    coordination.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Collaborated with cross-functional technical teams to streamline operations and monitor network uptime.</span>
+                  <span>
+                    Collaborated with cross-functional technical teams to
+                    streamline operations and monitor network uptime.
+                  </span>
                 </li>
               </ul>
             </div>
@@ -1045,10 +1253,12 @@ const EDUCATION_ITEMS: EducationItem[] = [
   {
     period: "JUNE 2023 – JUNE 2026",
     degree: "Bachelor of Computer Application (BCA)",
-    institution: "Anjuman Institute of Management and Computer Application • Bhatkal, Karnataka, India",
+    institution:
+      "Anjuman Institute of Management and Computer Application • Bhatkal, Karnataka, India",
     scoreType: "CGPA",
     scoreValue: "8.4 CGPA",
-    description: "Acquired a comprehensive understanding of core computer science, software engineering principles, and databases. Built multiple MERN stack applications, integrated APIs, and engaged in advanced practical projects in modern web development.",
+    description:
+      "Acquired a comprehensive understanding of core computer science, software engineering principles, and databases. Built multiple MERN stack applications, integrated APIs, and engaged in advanced practical projects in modern web development.",
     topics: [
       "Data Structures & Algorithms (DSA)",
       "Database Management Systems (DBMS)",
@@ -1062,7 +1272,8 @@ const EDUCATION_ITEMS: EducationItem[] = [
     institution: "Anjuman Pre-University College • Bhatkal, Karnataka, India",
     scoreType: "PERCENTAGE",
     scoreValue: "82%",
-    description: "Focused on computer science fundamentals and mathematics. Acquired solid fundamentals in problem-solving, programming logic, and structural databases, graduating with first-class distinction.",
+    description:
+      "Focused on computer science fundamentals and mathematics. Acquired solid fundamentals in problem-solving, programming logic, and structural databases, graduating with first-class distinction.",
     topics: [
       "Computer Science Fundamentals",
       "Algorithmic Logic",
@@ -1072,21 +1283,22 @@ const EDUCATION_ITEMS: EducationItem[] = [
   {
     period: "COMPLETED 2021",
     degree: "High School (SSLC / 10th Grade)",
-    institution: "Anjuman Islamia Anglo Urdu High School • Bhatkal, Karnataka, India",
+    institution:
+      "Anjuman Islamia Anglo Urdu High School • Bhatkal, Karnataka, India",
     scoreType: "PERCENTAGE",
     scoreValue: "72.32%",
-    description: "Laid robust academic foundations in science and mathematics, sparking an early interest in computer technology, systems, and software.",
-    topics: [
-      "General Sciences",
-      "Mathematics",
-      "Problem Solving",
-    ],
+    description:
+      "Laid robust academic foundations in science and mathematics, sparking an early interest in computer technology, systems, and software.",
+    topics: ["General Sciences", "Mathematics", "Problem Solving"],
   },
 ];
 
 function Education() {
   return (
-    <section id="education" className="scroll-mt-24 py-24 border-t border-border/60 relative">
+    <section
+      id="education"
+      className="scroll-mt-24 py-24 border-t border-border/60 relative"
+    >
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <Reveal>
           <div>
@@ -1095,7 +1307,8 @@ function Education() {
               <span>EDUCATION</span>
             </div>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              My academic <span className="text-primary font-bold">journey.</span>
+              My academic{" "}
+              <span className="text-primary font-bold">journey.</span>
             </h2>
           </div>
         </Reveal>
@@ -1364,12 +1577,17 @@ function CertificationsAndBadges() {
   }, [previewItem]);
 
   return (
-    <section id="certifications" className="scroll-mt-24 py-24 border-t border-border/60">
+    <section
+      id="certifications"
+      className="scroll-mt-24 py-24 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border/60 pb-6">
             <div>
-              <span className="text-xs font-mono tracking-wider text-primary">CREDENTIALS</span>
+              <span className="text-xs font-mono tracking-wider text-primary">
+                CREDENTIALS
+              </span>
               <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                 Verified Certifications &amp; Cloud Badges
               </h2>
@@ -1381,7 +1599,9 @@ function CertificationsAndBadges() {
                 type="button"
                 onClick={() => setActiveTab("all")}
                 className={`rounded-md px-3 py-1.5 transition cursor-pointer font-medium ${
-                  activeTab === "all" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  activeTab === "all"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 All (19)
@@ -1390,7 +1610,9 @@ function CertificationsAndBadges() {
                 type="button"
                 onClick={() => setActiveTab("certs")}
                 className={`rounded-md px-3 py-1.5 transition cursor-pointer font-medium ${
-                  activeTab === "certs" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  activeTab === "certs"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Certificates (5)
@@ -1399,7 +1621,9 @@ function CertificationsAndBadges() {
                 type="button"
                 onClick={() => setActiveTab("badges")}
                 className={`rounded-md px-3 py-1.5 transition cursor-pointer font-medium ${
-                  activeTab === "badges" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  activeTab === "badges"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Skill Badges (14)
@@ -1431,13 +1655,15 @@ function CertificationsAndBadges() {
                         className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-102"
                         loading="lazy"
                         onError={(e) => {
-                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.style.display = "none";
                         }}
                       />
                     </div>
                     <div className="mt-3">
                       <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <span className="text-primary font-medium">{cert.org}</span>
+                        <span className="text-primary font-medium">
+                          {cert.org}
+                        </span>
                         <span>{cert.date}</span>
                       </div>
                       <h4 className="mt-1 font-display text-sm font-bold text-foreground">
@@ -1455,7 +1681,11 @@ function CertificationsAndBadges() {
                       Preview Document
                     </button>
                     {cert.pdf && (
-                      <a href={cert.pdf} download className="text-muted-foreground hover:text-foreground">
+                      <a
+                        href={cert.pdf}
+                        download
+                        className="text-muted-foreground hover:text-foreground"
+                      >
                         Download PDF
                       </a>
                     )}
@@ -1486,16 +1716,20 @@ function CertificationsAndBadges() {
                       className="max-h-24 max-w-24 object-contain transition-transform duration-200 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.style.display = "none";
                       }}
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono text-primary uppercase">{b.badge}</span>
+                    <span className="text-[10px] font-mono text-primary uppercase">
+                      {b.badge}
+                    </span>
                     <h4 className="mt-1 font-display text-xs font-semibold text-foreground line-clamp-2">
                       {b.title}
                     </h4>
-                    <p className="mt-1 text-[11px] text-muted-foreground">{b.org} · {b.date}</p>
+                    <p className="mt-1 text-[11px] text-muted-foreground">
+                      {b.org} · {b.date}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -1518,7 +1752,9 @@ function CertificationsAndBadges() {
                   <h3 className="font-display text-base font-bold text-foreground">
                     {previewItem.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground">{previewItem.org} · {previewItem.date}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {previewItem.org} · {previewItem.date}
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -1556,16 +1792,23 @@ function About({ onOpenGallery }: { onOpenGallery: (index: number) => void }) {
 
   const prevPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setActivePhoto((prev) => (prev - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length);
+    setActivePhoto(
+      (prev) => (prev - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length,
+    );
   };
 
   return (
-    <section id="about" className="scroll-mt-24 py-24 border-t border-border/60">
+    <section
+      id="about"
+      className="scroll-mt-24 py-24 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section Header */}
         <Reveal>
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-mono tracking-wider text-primary">ABOUT MOHAMMED FAHAMAN</span>
+            <span className="text-xs font-mono tracking-wider text-primary">
+              ABOUT MOHAMMED FAHAMAN
+            </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Building Reliable Software with Purpose
             </h2>
@@ -1579,17 +1822,32 @@ function About({ onOpenGallery }: { onOpenGallery: (index: number) => void }) {
             <div className="space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
               <Reveal delay={0.04}>
                 <p>
-                  I'm a Full-Stack Web Developer focused on building scalable, high-performance web applications with React, TypeScript, Node.js, and MongoDB. I specialize in crafting intuitive user interfaces, developing robust backend services and REST APIs, and designing efficient data architectures to deliver seamless, reliable, and maintainable digital experiences.
+                  I'm a Full-Stack Web Developer focused on building scalable,
+                  high-performance web applications with React, TypeScript,
+                  Node.js, and MongoDB. I specialize in crafting intuitive user
+                  interfaces, developing robust backend services and REST APIs,
+                  and designing efficient data architectures to deliver
+                  seamless, reliable, and maintainable digital experiences.
                 </p>
               </Reveal>
               <Reveal delay={0.08}>
                 <p>
-                  I prioritize clean code, scalable architecture, performance, and usability to build reliable, maintainable applications. From crafting seamless frontend experiences to developing secure backend systems, implementing authentication, and integrating third-party services, I focus on delivering practical, well-engineered solutions that address real-world needs.
+                  I prioritize clean code, scalable architecture, performance,
+                  and usability to build reliable, maintainable applications.
+                  From crafting seamless frontend experiences to developing
+                  secure backend systems, implementing authentication, and
+                  integrating third-party services, I focus on delivering
+                  practical, well-engineered solutions that address real-world
+                  needs.
                 </p>
               </Reveal>
               <Reveal delay={0.12}>
                 <p>
-                  I continuously strengthen my engineering skills through hands-on projects, experimentation, and ongoing learning. My goal is to build efficient, accessible, and dependable digital solutions that deliver meaningful value to users and businesses.
+                  I continuously strengthen my engineering skills through
+                  hands-on projects, experimentation, and ongoing learning. My
+                  goal is to build efficient, accessible, and dependable digital
+                  solutions that deliver meaningful value to users and
+                  businesses.
                 </p>
               </Reveal>
             </div>
@@ -1599,12 +1857,20 @@ function About({ onOpenGallery }: { onOpenGallery: (index: number) => void }) {
               <div className="rounded-xl border border-border bg-card/70 p-5 backdrop-blur-xs">
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <span className="text-[10px] uppercase font-mono text-muted-foreground block tracking-wider">Location</span>
-                    <span className="font-medium text-foreground mt-0.5 block">Bhatkal, Karnataka, India</span>
+                    <span className="text-[10px] uppercase font-mono text-muted-foreground block tracking-wider">
+                      Location
+                    </span>
+                    <span className="font-medium text-foreground mt-0.5 block">
+                      Bhatkal, Karnataka, India
+                    </span>
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-mono text-muted-foreground block tracking-wider">Education</span>
-                    <span className="font-medium text-foreground mt-0.5 block">BCA Candidate (2023–2026)</span>
+                    <span className="text-[10px] uppercase font-mono text-muted-foreground block tracking-wider">
+                      Education
+                    </span>
+                    <span className="font-medium text-foreground mt-0.5 block">
+                      BCA Candidate (2023–2026)
+                    </span>
                   </div>
                 </div>
 
@@ -1680,8 +1946,12 @@ function About({ onOpenGallery }: { onOpenGallery: (index: number) => void }) {
                 {/* Bottom Overlay Info & Expand Button */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white z-10 pointer-events-auto">
                   <div>
-                    <p className="font-display text-sm font-semibold">Mohammed Fahaman</p>
-                    <p className="text-xs text-white/80">Full-Stack Web Developer</p>
+                    <p className="font-display text-sm font-semibold">
+                      Mohammed Fahaman
+                    </p>
+                    <p className="text-xs text-white/80">
+                      Full-Stack Web Developer
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="rounded-md bg-black/60 px-2 py-1 text-[10px] font-mono text-white/90 backdrop-blur-md border border-white/10">
@@ -1717,48 +1987,59 @@ function TechnicalStrengths() {
     {
       title: "Frontend Development",
       icon: Layers,
-      description: "Building responsive, component-driven user interfaces with React, TypeScript, and modern CSS. Focused on accessible patterns, robust state management, and fluid interactions.",
+      description:
+        "Building responsive, component-driven user interfaces with React, TypeScript, and modern CSS. Focused on accessible patterns, robust state management, and fluid interactions.",
       tags: ["React 19", "TypeScript", "Tailwind CSS", "TanStack Router"],
     },
     {
       title: "Backend Development",
       icon: Server,
-      description: "Developing robust REST APIs with Node.js and Express.js. Implementing secure JWT authentication, role-based access control (RBAC), input validation, and structured middleware.",
+      description:
+        "Developing robust REST APIs with Node.js and Express.js. Implementing secure JWT authentication, role-based access control (RBAC), input validation, and structured middleware.",
       tags: ["Node.js", "Express.js", "REST APIs", "JWT Auth"],
     },
     {
       title: "Databases and Data Modeling",
       icon: Database,
-      description: "Designing normalized schemas and managing relational and document databases with MongoDB, PostgreSQL, MySQL, and Prisma ORM for data integrity and speed.",
+      description:
+        "Designing normalized schemas and managing relational and document databases with MongoDB, PostgreSQL, MySQL, and Prisma ORM for data integrity and speed.",
       tags: ["MongoDB", "PostgreSQL", "MySQL", "Prisma ORM"],
     },
     {
       title: "Application Engineering",
       icon: Terminal,
-      description: "Integrating frontend and backend systems with clean architectural separation, structured error handling, third-party API connectivity, and performance optimization.",
+      description:
+        "Integrating frontend and backend systems with clean architectural separation, structured error handling, third-party API connectivity, and performance optimization.",
       tags: ["API Integration", "Clean Architecture", "Error Handling"],
     },
     {
       title: "Deployment and Integrations",
       icon: Cloud,
-      description: "Containerizing services with Docker and deploying production applications on Google Cloud Platform, Vercel, and Render alongside practical Generative AI workflows.",
+      description:
+        "Containerizing services with Docker and deploying production applications on Google Cloud Platform, Vercel, and Render alongside practical Generative AI workflows.",
       tags: ["Google Cloud", "Docker", "Vercel", "Render CI/CD"],
     },
   ];
 
   return (
-    <section id="strengths" className="scroll-mt-24 py-20 border-t border-border/60">
+    <section
+      id="strengths"
+      className="scroll-mt-24 py-20 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <div>
-              <span className="text-xs font-mono tracking-wider text-primary">TECHNICAL STRENGTHS</span>
+              <span className="text-xs font-mono tracking-wider text-primary">
+                TECHNICAL STRENGTHS
+              </span>
               <h2 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl mt-1">
                 Core Competencies &amp; Engineering Focus
               </h2>
             </div>
             <p className="text-xs text-muted-foreground sm:max-w-xs">
-              Key technical domains developed and applied across production full-stack systems.
+              Key technical domains developed and applied across production
+              full-stack systems.
             </p>
           </div>
         </Reveal>
@@ -1771,7 +2052,11 @@ function TechnicalStrengths() {
             const mdSpan = idx === 4 ? "md:col-span-2" : "md:col-span-1";
 
             return (
-              <Reveal key={cat.title} delay={idx * 0.05} className={`${lgSpan} ${mdSpan}`}>
+              <Reveal
+                key={cat.title}
+                delay={idx * 0.05}
+                className={`${lgSpan} ${mdSpan}`}
+              >
                 <div className="group h-full flex flex-col justify-between rounded-xl border border-border bg-card/60 p-5 backdrop-blur-xs transition-all duration-300 hover:border-primary/50 hover:shadow-md">
                   <div>
                     <div className="flex items-center gap-3">
@@ -1811,7 +2096,9 @@ function TechnicalStrengths() {
    CONTACT SECTION (Clear Heading, Direct Information, Working Form)
    ────────────────────────────────────────────────────────────────────────── */
 function Contact({ onOpenCv }: { onOpenCv: () => void }) {
-  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err" | "nopass">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "ok" | "err" | "nopass"
+  >("idle");
   const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -1831,10 +2118,10 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          from_name:  (fd.get("name")    as string) ?? "",
-          from_email: (fd.get("email")   as string) ?? "",
-          subject:    (fd.get("subject") as string) ?? "",
-          message:    (fd.get("message") as string) ?? "",
+          from_name: (fd.get("name") as string) ?? "",
+          from_email: (fd.get("email") as string) ?? "",
+          subject: (fd.get("subject") as string) ?? "",
+          message: (fd.get("message") as string) ?? "",
         },
         { publicKey: EMAILJS_PUBLIC_KEY },
       );
@@ -1848,16 +2135,24 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 py-24 border-t border-border/60">
+    <section
+      id="contact"
+      className="scroll-mt-24 py-24 border-t border-border/60"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div>
-            <span className="text-xs font-mono tracking-wider text-primary">GET IN TOUCH</span>
+            <span className="text-xs font-mono tracking-wider text-primary">
+              GET IN TOUCH
+            </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Let's Discuss Projects, Roles, or Ideas
             </h2>
             <p className="mt-2 max-w-2xl text-base text-muted-foreground">
-              I’m open to full-time engineering roles, remote opportunities, and contract-based projects, where I can contribute my technical expertise to building scalable, reliable, and user-focused software solutions.
+              I’m open to full-time engineering roles, remote opportunities, and
+              contract-based projects, where I can contribute my technical
+              expertise to building scalable, reliable, and user-focused
+              software solutions.
             </p>
           </div>
         </Reveal>
@@ -1876,8 +2171,12 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               >
                 <Mail className="h-4 w-4 text-primary shrink-0" />
                 <div>
-                  <div className="text-muted-foreground text-[10px] uppercase">Email</div>
-                  <div className="font-mono text-foreground font-medium">mohammedfahaman5@gmail.com</div>
+                  <div className="text-muted-foreground text-[10px] uppercase">
+                    Email
+                  </div>
+                  <div className="font-mono text-foreground font-medium">
+                    mohammedfahaman5@gmail.com
+                  </div>
                 </div>
               </a>
 
@@ -1887,8 +2186,12 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               >
                 <Phone className="h-4 w-4 text-primary shrink-0" />
                 <div>
-                  <div className="text-muted-foreground text-[10px] uppercase">Phone / WhatsApp</div>
-                  <div className="font-mono text-foreground font-medium">+91 9108352988</div>
+                  <div className="text-muted-foreground text-[10px] uppercase">
+                    Phone / WhatsApp
+                  </div>
+                  <div className="font-mono text-foreground font-medium">
+                    +91 9108352988
+                  </div>
                 </div>
               </a>
 
@@ -1900,8 +2203,12 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               >
                 <Linkedin className="h-4 w-4 text-primary shrink-0" />
                 <div>
-                  <div className="text-muted-foreground text-[10px] uppercase">LinkedIn</div>
-                  <div className="text-foreground font-medium">linkedin.com/in/mohammed-fahaman</div>
+                  <div className="text-muted-foreground text-[10px] uppercase">
+                    LinkedIn
+                  </div>
+                  <div className="text-foreground font-medium">
+                    linkedin.com/in/mohammed-fahaman
+                  </div>
                 </div>
               </a>
 
@@ -1913,8 +2220,12 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               >
                 <Github className="h-4 w-4 text-primary shrink-0" />
                 <div>
-                  <div className="text-muted-foreground text-[10px] uppercase">GitHub</div>
-                  <div className="text-foreground font-medium">github.com/fahaman</div>
+                  <div className="text-muted-foreground text-[10px] uppercase">
+                    GitHub
+                  </div>
+                  <div className="text-foreground font-medium">
+                    github.com/fahaman
+                  </div>
                 </div>
               </a>
             </div>
@@ -1955,7 +2266,9 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground">Your Name</label>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    Your Name
+                  </label>
                   <input
                     name="name"
                     type="text"
@@ -1965,7 +2278,9 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground">Email Address</label>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    Email Address
+                  </label>
                   <input
                     name="email"
                     type="email"
@@ -1977,7 +2292,9 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               </div>
 
               <div className="mt-4">
-                <label className="text-xs font-medium text-muted-foreground">Subject / Opportunity</label>
+                <label className="text-xs font-medium text-muted-foreground">
+                  Subject / Opportunity
+                </label>
                 <input
                   name="subject"
                   type="text"
@@ -1987,7 +2304,9 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               </div>
 
               <div className="mt-4">
-                <label className="text-xs font-medium text-muted-foreground">Message</label>
+                <label className="text-xs font-medium text-muted-foreground">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   required
@@ -1999,9 +2318,21 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-muted-foreground">
-                  {status === "ok" && <span className="text-primary font-medium">✓ Message sent! I will reply within 24h.</span>}
-                  {status === "err" && <span className="text-red-500">Failed to send — please email directly.</span>}
-                  {status === "nopass" && <span className="text-amber-500">Email service not configured — please use direct email.</span>}
+                  {status === "ok" && (
+                    <span className="text-primary font-medium">
+                      ✓ Message sent! I will reply within 24h.
+                    </span>
+                  )}
+                  {status === "err" && (
+                    <span className="text-red-500">
+                      Failed to send — please email directly.
+                    </span>
+                  )}
+                  {status === "nopass" && (
+                    <span className="text-amber-500">
+                      Email service not configured — please use direct email.
+                    </span>
+                  )}
                   {status === "idle" && "Typical response time: under 24 hours"}
                   {status === "sending" && "Transmitting message..."}
                 </span>
@@ -2055,46 +2386,153 @@ function Footer({ onAvatarClick }: { onAvatarClick: () => void }) {
               </div>
             </div>
             <p className="text-xs leading-relaxed text-muted-foreground max-w-sm pt-1">
-              Building practical web applications with thoughtful interfaces and reliable backend systems.
+              Building practical web applications with thoughtful interfaces and
+              reliable backend systems.
             </p>
           </div>
 
           {/* Links */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7 md:justify-items-end text-xs">
             <div className="space-y-2">
-              <span className="font-mono text-primary uppercase text-[11px]">Pages</span>
-              <div><a href="#top" className="text-muted-foreground hover:text-foreground">Home</a></div>
-              <div><a href="#projects" className="text-muted-foreground hover:text-foreground">Projects</a></div>
-              <div><a href="#skills" className="text-muted-foreground hover:text-foreground">Skills</a></div>
-              <div><a href="#experience" className="text-muted-foreground hover:text-foreground">Experience</a></div>
-              <div><a href="#contact" className="text-muted-foreground hover:text-foreground">Contact</a></div>
+              <span className="font-mono text-primary uppercase text-[11px]">
+                Pages
+              </span>
+              <div>
+                <a
+                  href="#top"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Home
+                </a>
+              </div>
+              <div>
+                <a
+                  href="#projects"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Projects
+                </a>
+              </div>
+              <div>
+                <a
+                  href="#skills"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Skills
+                </a>
+              </div>
+              <div>
+                <a
+                  href="#experience"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Experience
+                </a>
+              </div>
+              <div>
+                <a
+                  href="#contact"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Contact
+                </a>
+              </div>
             </div>
 
             <div className="space-y-2">
-              <span className="font-mono text-primary uppercase text-[11px]">Legal</span>
-              <div><Link to="/privacy" className="text-muted-foreground hover:text-foreground">Privacy Policy</Link></div>
-              <div><Link to="/terms" className="text-muted-foreground hover:text-foreground">Terms of Service</Link></div>
-              <div><Link to="/cookies" className="text-muted-foreground hover:text-foreground">Cookie Policy</Link></div>
+              <span className="font-mono text-primary uppercase text-[11px]">
+                Legal
+              </span>
+              <div>
+                <Link
+                  to="/privacy"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Privacy Policy
+                </Link>
+              </div>
+              <div>
+                <Link
+                  to="/terms"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Terms of Service
+                </Link>
+              </div>
+              <div>
+                <Link
+                  to="/cookies"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Cookie Policy
+                </Link>
+              </div>
             </div>
 
             <div className="space-y-2">
-              <span className="font-mono text-primary uppercase text-[11px]">Connect</span>
-              <div><a href="https://linkedin.com/in/mohammed-fahaman" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">LinkedIn</a></div>
-              <div><a href="https://github.com/fahaman" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">GitHub</a></div>
-              <div><a href="https://www.instagram.com/mohammed_fahaman/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">Instagram</a></div>
-              <div><a href="https://www.snapchat.com/add/fahamxn" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">Snapchat</a></div>
+              <span className="font-mono text-primary uppercase text-[11px]">
+                Connect
+              </span>
+              <div>
+                <a
+                  href="https://linkedin.com/in/mohammed-fahaman"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  LinkedIn
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://github.com/fahaman"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  GitHub
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://www.instagram.com/mohammed_fahaman/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Instagram
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://www.snapchat.com/add/fahamxn"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Snapchat
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="mt-10 border-t border-border pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} Mohammed Fahaman. All rights reserved.</div>
+          <div>
+            © {new Date().getFullYear()} Mohammed Fahaman. All rights reserved.
+          </div>
           <div className="flex items-center gap-4">
-            <Link to="/privacy" className="hover:text-foreground">Privacy</Link>
+            <Link to="/privacy" className="hover:text-foreground">
+              Privacy
+            </Link>
             <span>•</span>
-            <Link to="/terms" className="hover:text-foreground">Terms</Link>
+            <Link to="/terms" className="hover:text-foreground">
+              Terms
+            </Link>
             <span>•</span>
-            <Link to="/cookies" className="hover:text-foreground">Cookies</Link>
+            <Link to="/cookies" className="hover:text-foreground">
+              Cookies
+            </Link>
           </div>
         </div>
       </div>
