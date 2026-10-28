@@ -36,5 +36,4 @@ Thank you for your interest in contributing to Mohammed Fahaman's portfolio repo
 - **No Purple Gradients:** Use cohesive palettes (cyan, blue, amber, emerald, slate).
 - **No Pill-Shaped Buttons:** Keep buttons modern and geometric (`rounded-xl` / `rounded-lg`).
 - **No Emoji Interface Icons:** Utilize Lucide React SVG icons.
-- **Accessibility:** Maintain WCAG 2.2 AA standards (semantic tags, keyboard focus rings, color contrast).
-- **Git History Integrity:** Never force push, rebase, or squash commits already pushed to branches connected to Lovable.
+- **Git History Integrity:** Maintain linear, clean commit history on public release branches.

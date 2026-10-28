@@ -1,4 +1,4 @@
 # Monitoring & Logging
 
-- Runtime client errors logged via `reportLovableError` in `src/lib/lovable-error-reporting.ts`.
+- Runtime client errors captured via React error boundaries and browser console telemetry.
 - Edge worker metrics monitored in Cloudflare dashboard for request counts, error rates, and latency.
