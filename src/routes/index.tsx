@@ -6,14 +6,16 @@ import {
   GraduationCap, X, ChevronLeft, ChevronRight,
   Maximize2, FileText, ZoomIn, ZoomOut, Phone, Sun, Moon,
   Layers, Server, Database, Cloud, Wrench, Award,
-  Sparkles, Terminal
+  Sparkles, Terminal, BookOpen, Instagram, Ghost
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "@/lib/send-mail";
 import { Counter, Reveal } from "@/components/portfolio/motion-bits";
 import { BackgroundGlitter } from "@/components/portfolio/BackgroundGlitter";
+import { CursorGlow } from "@/components/portfolio/CursorGlow";
 import { FloatingNavbar } from "@/components/portfolio/FloatingNavbar";
+import { SkillsTicker } from "@/components/portfolio/SkillsTicker";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -320,6 +322,9 @@ function Portfolio() {
       {/* Subtle, High-Performance Champagne & Ivory Particle Layer */}
       <BackgroundGlitter />
 
+      {/* Mouse-Following Ambient Glow Animation */}
+      <CursorGlow />
+
       {/* Floating Animated Navigation with Sliding Indicator and Illustrated Theme Toggle */}
       <FloatingNavbar
         onOpenCv={() => setCvModalOpen(true)}
@@ -331,6 +336,9 @@ function Portfolio() {
         onOpenCv={() => setCvModalOpen(true)}
         onAvatarClick={() => openLightbox(0)}
       />
+
+      {/* Skills Sliding Ticker (Scrolling right automatically) */}
+      <SkillsTicker />
 
       {/* Projects Section */}
       <Projects />
@@ -540,6 +548,7 @@ function Hero({ onOpenCv, onAvatarClick }: { onOpenCv: () => void; onAvatarClick
     </section>
   );
 }
+
 
 /* ──────────────────────────────────────────────────────────────────────────
    PROJECTS SECTION (Visual Portfolio of Real Work, Not Identical Cards)
@@ -879,34 +888,34 @@ function Skills() {
       category: "Frontend Development",
       icon: <Layers className="h-4 w-4 text-primary" />,
       description: "Component systems, reactive state, and responsive interfaces.",
-      skills: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "TanStack Router", "Framer Motion", "HTML5 & Semantic Web"],
+      skills: ["React.js", "Context API", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "TanStack Query", "TanStack Router", "Redux", "Framer Motion", "HTML5 & Semantic Web"],
     },
     {
       category: "Backend Development",
       icon: <Server className="h-4 w-4 text-primary" />,
       description: "Robust server logic, RESTful services, and authentication pipelines.",
-      skills: ["Node.js", "Express.js", "Python", "RESTful APIs", "JWT Authentication", "Role-Based Access Control (RBAC)", "API Design"],
+      skills: ["Node.js", "Express.js", "Python", "RESTful APIs", "JWT Authentication", "Role-Based Access Control (RBAC)", "API Architecture"],
     },
     {
-      category: "Databases",
+      category: "Databases & ORMs",
       icon: <Database className="h-4 w-4 text-primary" />,
       description: "Data modeling, schema design, and query optimization.",
       skills: ["MongoDB", "PostgreSQL", "MySQL", "Prisma ORM", "Redis", "Vector Databases"],
     },
     {
-      category: "Cloud and Deployment",
+      category: "Cloud & DevOps",
       icon: <Cloud className="h-4 w-4 text-primary" />,
       description: "Cloud platforms, containerization, and automated hosting.",
       skills: ["Google Cloud Platform", "Docker", "Vercel", "Render", "CI/CD Workflows", "Cloud Storage"],
     },
     {
-      category: "AI Integrations",
+      category: "AI & RAG Integrations",
       icon: <Award className="h-4 w-4 text-primary" />,
       description: "Generative AI models, prompt design, and retrieval architectures.",
       skills: ["Vertex AI", "Prompt Design", "Claude 3.5 Sonnet", "RAG Pipelines", "Embeddings", "LLM Integration"],
     },
     {
-      category: "Developer Tools and Testing",
+      category: "Developer Tools & Testing",
       icon: <Wrench className="h-4 w-4 text-primary" />,
       description: "Version control, workflow efficiency, and web accessibility.",
       skills: ["Git & GitHub", "Linux CLI", "Postman", "Vite", "VS Code", "Power BI", "WCAG 2.2 AA"],
@@ -1020,74 +1029,142 @@ function Experience() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   SECTION B: EDUCATION
+   SECTION B: EDUCATION (My Academic Journey)
    ────────────────────────────────────────────────────────────────────────── */
+interface EducationItem {
+  period: string;
+  degree: string;
+  institution: string;
+  scoreType: string;
+  scoreValue: string;
+  description: string;
+  topics: string[];
+}
+
+const EDUCATION_ITEMS: EducationItem[] = [
+  {
+    period: "JUNE 2023 – JUNE 2026",
+    degree: "Bachelor of Computer Application (BCA)",
+    institution: "Anjuman Institute of Management and Computer Application • Bhatkal, Karnataka, India",
+    scoreType: "CGPA",
+    scoreValue: "8.4 CGPA",
+    description: "Acquired a comprehensive understanding of core computer science, software engineering principles, and databases. Built multiple MERN stack applications, integrated APIs, and engaged in advanced practical projects in modern web development.",
+    topics: [
+      "Data Structures & Algorithms (DSA)",
+      "Database Management Systems (DBMS)",
+      "Software Engineering & Operating Systems",
+      "Computer Networks",
+    ],
+  },
+  {
+    period: "2021 – 2023",
+    degree: "Second Pre-University Course (PUC)",
+    institution: "Anjuman Pre-University College • Bhatkal, Karnataka, India",
+    scoreType: "PERCENTAGE",
+    scoreValue: "82%",
+    description: "Focused on computer science fundamentals and mathematics. Acquired solid fundamentals in problem-solving, programming logic, and structural databases, graduating with first-class distinction.",
+    topics: [
+      "Computer Science Fundamentals",
+      "Algorithmic Logic",
+      "Mathematics & Physics",
+    ],
+  },
+  {
+    period: "COMPLETED 2021",
+    degree: "High School (SSLC / 10th Grade)",
+    institution: "Anjuman Islamia Anglo Urdu High School • Bhatkal, Karnataka, India",
+    scoreType: "PERCENTAGE",
+    scoreValue: "72.32%",
+    description: "Laid robust academic foundations in science and mathematics, sparking an early interest in computer technology, systems, and software.",
+    topics: [
+      "General Sciences",
+      "Mathematics",
+      "Problem Solving",
+    ],
+  },
+];
+
 function Education() {
   return (
-    <section id="education" className="scroll-mt-24 py-24 border-t border-border/60">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="education" className="scroll-mt-24 py-24 border-t border-border/60 relative">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <Reveal>
           <div>
-            <span className="text-xs font-mono tracking-wider text-primary">ACADEMIC BACKGROUND</span>
-            <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Education &amp; Qualifications
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-mono font-medium tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span>EDUCATION</span>
+            </div>
+            <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+              My academic <span className="text-primary font-bold">journey.</span>
             </h2>
-            <p className="mt-2 max-w-2xl text-base text-muted-foreground">
-              Formal foundations in computer science, software engineering principles, and core systems programming.
-            </p>
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 max-w-4xl">
-          <Reveal delay={0.05}>
-            <div className="rounded-xl border border-border bg-card p-6 flex flex-col justify-between">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-muted-foreground">2023 – 2026</span>
-                  <span className="text-xs font-mono font-semibold text-primary px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-                    8.4 CGPA
-                  </span>
+        {/* Timeline Layout matching attached design */}
+        <div className="mt-12 space-y-8">
+          {EDUCATION_ITEMS.map((item, idx) => (
+            <Reveal key={item.degree} delay={idx * 0.08}>
+              <div className="relative flex gap-6 sm:gap-8">
+                {/* Left Timeline Indicator */}
+                <div className="hidden sm:flex flex-col items-center shrink-0 w-10 relative">
+                  {/* Circular Node with Graduation Cap */}
+                  <div className="z-10 flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-card text-primary shadow-sm ring-4 ring-background transition-colors duration-200">
+                    <GraduationCap className="h-4 w-4" />
+                  </div>
+                  {/* Connecting Line between nodes */}
+                  {idx !== EDUCATION_ITEMS.length - 1 && (
+                    <div className="absolute top-10 bottom-[-2.25rem] w-px bg-border/80" />
+                  )}
                 </div>
-                <h3 className="font-display text-base font-bold text-foreground">
-                  Bachelor of Computer Applications (BCA)
-                </h3>
-                <p className="text-xs text-muted-foreground">
-                  Anjuman Institute of Management and Computer Application
-                </p>
-                <p className="text-xs text-muted-foreground leading-relaxed pt-2">
-                  Core coursework: Data Structures &amp; Algorithms, Database Management Systems, Operating Systems, Computer Networks, Software Engineering.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-border text-[11px] text-muted-foreground">
-                Elected Class Representative (3rd Year)
-              </div>
-            </div>
-          </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="rounded-xl border border-border bg-card p-6 flex flex-col justify-between">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-muted-foreground">2021 – 2023</span>
-                  <span className="text-xs font-mono font-semibold text-primary px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-                    82% Distinction
-                  </span>
+                {/* Milestone Card */}
+                <div className="flex-1 rounded-2xl border border-border/80 bg-card/75 p-6 sm:p-8 backdrop-blur-xs transition-all duration-300 hover:border-primary/50 hover:bg-card hover:shadow-xl group">
+                  {/* Top Row: Period, Degree, Institution, and Score Box */}
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <span className="text-xs font-mono font-medium tracking-wider text-primary uppercase">
+                        {item.period}
+                      </span>
+                      <h3 className="mt-1 font-display text-xl sm:text-2xl font-bold text-foreground">
+                        {item.degree}
+                      </h3>
+                      <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
+                        {item.institution}
+                      </p>
+                    </div>
+
+                    {/* Score Badge */}
+                    <div className="rounded-xl border border-border/80 bg-background/60 px-4 py-2 text-center shrink-0 min-w-[110px] self-start sm:self-auto">
+                      <span className="block text-[10px] font-mono tracking-widest text-muted-foreground uppercase">
+                        {item.scoreType}
+                      </span>
+                      <span className="block font-display text-base sm:text-lg font-bold text-primary mt-0.5">
+                        {item.scoreValue}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description Paragraph */}
+                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+
+                  {/* Coursework Topics Pill Badges */}
+                  <div className="mt-6 flex flex-wrap gap-2 pt-1">
+                    {item.topics.map((topic) => (
+                      <span
+                        key={topic}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-background/60 px-3 py-1.5 text-xs text-foreground/90 transition-colors hover:border-primary/40 hover:bg-background"
+                      >
+                        <BookOpen className="h-3.5 w-3.5 text-primary shrink-0" />
+                        <span>{topic}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="font-display text-base font-bold text-foreground">
-                  Pre-University Course (PUC)
-                </h3>
-                <p className="text-xs text-muted-foreground">
-                  Anjuman Pre-University College
-                </p>
-                <p className="text-xs text-muted-foreground leading-relaxed pt-2">
-                  Concentration in Computer Science, Mathematics, and Physics with high honors.
-                </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-border text-[11px] text-muted-foreground">
-                Distinction in Computer Science
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
