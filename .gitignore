@@ -12,6 +12,7 @@ dist/
 dist/
 .nitro/
 .cache/
+.wrangler/
 
 # Editor
 .vscode/

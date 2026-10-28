@@ -23,9 +23,10 @@ export function Counter({ to, suffix = "", duration = 1.6 }: { to: number; suffi
   return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
 }
 
-export function Reveal({ children, delay = 0, y = 24 }: { children: React.ReactNode; delay?: number; y?: number }) {
+export function Reveal({ children, delay = 0, y = 24, className = "" }: { children: React.ReactNode; delay?: number; y?: number; className?: string }) {
   return (
     <motion.div
+      className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

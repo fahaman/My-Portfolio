@@ -1,0 +1,6 @@
+# Backend & Serverless Architecture
+
+While Mohammed Fahaman's primary portfolio site is statically and SSR-rendered via TanStack Start / Nitro, server handlers are provided for automated endpoints:
+- Dynamic XML sitemap generator (`src/routes/sitemap[.]xml.ts`).
+- Server error boundary reporting (`src/lib/lovable-error-reporting.ts`).
+- Server-side environment resolution via Nitro Cloudflare preset.
