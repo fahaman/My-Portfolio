@@ -1400,7 +1400,7 @@ interface CertItem {
   title: string;
   org: string;
   date: string;
-  image: string;
+  image?: string;
   badge: string;
   pdf?: string;
   skills: string[];
@@ -1411,7 +1411,6 @@ const CERTIFICATES: CertItem[] = [
     title: "Full Stack Web Development with Generative AI",
     org: "Sheryians Coding School",
     date: "Job-Ready AI-Powered Cohort 2.0",
-    image: "/certs/generative-ai.png",
     badge: "AI Cohort 2.0",
     skills: [
       "Full-Stack Web Dev",
@@ -1667,20 +1666,42 @@ function CertificationsAndBadges() {
                   className="rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary flex flex-col justify-between"
                 >
                   <div>
-                    <div
-                      onClick={() => setPreviewItem(cert)}
-                      className="aspect-[16/10] overflow-hidden rounded-lg border border-border bg-background/50 flex items-center justify-center p-2 cursor-pointer group"
-                    >
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-102"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                    </div>
+                    {cert.image ? (
+                      <div
+                        onClick={() =>
+                          setPreviewItem({
+                            title: cert.title,
+                            org: cert.org,
+                            date: cert.date,
+                            image: cert.image!,
+                            pdf: cert.pdf,
+                          })
+                        }
+                        className="aspect-[16/10] overflow-hidden rounded-lg border border-border bg-background/50 flex items-center justify-center p-2 cursor-pointer group"
+                      >
+                        <img
+                          src={cert.image}
+                          alt={cert.title}
+                          className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-102"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-[16/10] overflow-hidden rounded-lg border border-border/80 bg-background/40 flex flex-col items-center justify-center p-4 text-center">
+                        <div className="rounded-xl border border-primary/20 bg-primary/10 p-3 text-primary mb-2">
+                          <GraduationCap className="h-6 w-6" />
+                        </div>
+                        <span className="text-[11px] font-mono font-medium text-muted-foreground">
+                          {cert.org}
+                        </span>
+                        <span className="text-[10px] font-mono text-primary mt-0.5">
+                          {cert.badge}
+                        </span>
+                      </div>
+                    )}
                     <div className="mt-3">
                       <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span className="text-primary font-medium">
@@ -1695,13 +1716,29 @@ function CertificationsAndBadges() {
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs">
-                    <button
-                      type="button"
-                      onClick={() => setPreviewItem(cert)}
-                      className="text-primary hover:underline font-medium cursor-pointer"
-                    >
-                      Preview Document
-                    </button>
+                    {cert.image || cert.pdf ? (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          cert.image &&
+                          setPreviewItem({
+                            title: cert.title,
+                            org: cert.org,
+                            date: cert.date,
+                            image: cert.image,
+                            pdf: cert.pdf,
+                          })
+                        }
+                        className="text-primary hover:underline font-medium cursor-pointer"
+                      >
+                        Preview Document
+                      </button>
+                    ) : (
+                      <span className="font-mono text-[11px] text-primary/90 flex items-center gap-1.5">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                        <span>Completed Program</span>
+                      </span>
+                    )}
                     {cert.pdf && (
                       <a
                         href={cert.pdf}
