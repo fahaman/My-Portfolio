@@ -6,7 +6,6 @@ import {
   Linkedin,
   Mail,
   Download,
-  MapPin,
   ExternalLink,
   Calendar,
   CheckCircle2,
@@ -554,11 +553,6 @@ function Hero({
                 <Linkedin className="h-3.5 w-3.5" />
                 <span>LinkedIn</span>
               </a>
-              <span className="text-border">•</span>
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-3.5 w-3.5" />
-                <span>Bhatkal, Karnataka, India</span>
-              </span>
             </motion.div>
           </div>
 
@@ -690,7 +684,7 @@ const SUPPORTING_PROJECTS: ProjectData[] = [
       "TypeScript",
       "Vite",
     ],
-    liveUrl: "https://nexora-ai-sigma-two.vercel.app",
+    liveUrl: "https://businvo.vercel.app/",
     githubUrl: "https://github.com/fahaman/Businvo",
   },
   {
@@ -1063,9 +1057,10 @@ function Skills() {
       ],
     },
     {
-      category: "Cloud & DevOps",
+      category: "Cloud & Infrastructure",
       icon: <Cloud className="h-4 w-4 text-primary" />,
-      description: "Cloud platforms, containerization, and automated hosting.",
+      description:
+        "Cloud platforms, containerization, and automated deployment pipelines.",
       skills: [
         "Google Cloud Platform",
         "Docker",
@@ -1076,24 +1071,25 @@ function Skills() {
       ],
     },
     {
-      category: "AI & RAG Integrations",
+      category: "AI & Full-Stack GenAI",
       icon: <Award className="h-4 w-4 text-primary" />,
       description:
-        "Generative AI models, prompt design, and retrieval architectures.",
+        "Generative AI integration, full-stack AI applications, and RAG architectures.",
       skills: [
+        "Full-Stack Web Dev with GenAI",
         "Vertex AI",
-        "Prompt Design",
-        "Claude 3.5 Sonnet",
+        "Prompt Engineering",
         "RAG Pipelines",
         "Embeddings",
         "LLM Integration",
+        "AI Agents",
       ],
     },
     {
       category: "Developer Tools & Testing",
       icon: <Wrench className="h-4 w-4 text-primary" />,
       description:
-        "Version control, workflow efficiency, and web accessibility.",
+        "Version control, API testing, performance analysis, and workflow efficiency.",
       skills: [
         "Git & GitHub",
         "Linux CLI",
@@ -1101,7 +1097,6 @@ function Skills() {
         "Vite",
         "VS Code",
         "Power BI",
-        "WCAG 2.2 AA",
       ],
     },
   ];
@@ -1166,6 +1161,31 @@ function Skills() {
 /* ──────────────────────────────────────────────────────────────────────────
    SECTION A: PROFESSIONAL EXPERIENCE
    ────────────────────────────────────────────────────────────────────────── */
+interface ExperienceItem {
+  role: string;
+  organization: string;
+  location: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+}
+
+const EXPERIENCES: ExperienceItem[] = [
+  {
+    role: "Technical Operations Support",
+    organization: "INF NGO",
+    location: "Karnataka, India",
+    period: "Oct 2024 – Jan 2025",
+    summary:
+      "Delivered on-site software, hardware, and event infrastructure support during large-scale exhibitions.",
+    highlights: [
+      "Resolved 20+ software and infrastructure incidents, ensuring uninterrupted operations across multi-day exhibitions.",
+      "Assisted 500+ attendees with real-time software troubleshooting, network configuration, and technical coordination.",
+      "Collaborated with cross-functional technical teams to streamline operations and monitor network uptime.",
+    ],
+  },
+];
+
 function Experience() {
   return (
     <section
@@ -1183,57 +1203,42 @@ function Experience() {
             </h2>
             <p className="mt-2 max-w-2xl text-base text-muted-foreground">
               Practical engineering support, infrastructure management, and
-              technical collaboration across production events.
+              technical collaboration across production environments and events.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-12 max-w-3xl">
-          <Reveal delay={0.05}>
-            <div className="relative border-l-2 border-border pl-6 sm:pl-8 space-y-3">
-              <span className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-primary bg-background" />
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="font-display text-lg font-bold text-foreground">
-                  Technical Operations Support
-                </h3>
-                <span className="text-xs font-mono text-muted-foreground px-2.5 py-1 rounded-md border border-border bg-card">
-                  Aug 2024 – Oct 2025
-                </span>
-              </div>
-              <p className="text-xs text-primary font-medium">
-                INF NGO · Karnataka, India
-              </p>
+        <div className="mt-12 max-w-3xl space-y-8">
+          {EXPERIENCES.map((exp, idx) => (
+            <Reveal key={exp.role + exp.organization} delay={idx * 0.05}>
+              <div className="relative border-l-2 border-border pl-6 sm:pl-8 space-y-3">
+                <span className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-primary bg-background" />
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="font-display text-lg font-bold text-foreground">
+                    {exp.role}
+                  </h3>
+                  <span className="text-xs font-mono text-muted-foreground px-2.5 py-1 rounded-md border border-border bg-card">
+                    {exp.period}
+                  </span>
+                </div>
+                <p className="text-xs text-primary font-medium">
+                  {exp.organization} · {exp.location}
+                </p>
 
-              <p className="text-sm text-muted-foreground leading-relaxed pt-2">
-                Delivered on-site software, hardware, and event infrastructure
-                support during large-scale exhibitions.
-              </p>
-              <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground pt-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>
-                    Resolved 20+ software and infrastructure incidents, ensuring
-                    uninterrupted operations across multi-day exhibitions.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>
-                    Assisted 500+ attendees with real-time software
-                    troubleshooting, network configuration, and technical
-                    coordination.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>
-                    Collaborated with cross-functional technical teams to
-                    streamline operations and monitor network uptime.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </Reveal>
+                <p className="text-sm text-muted-foreground leading-relaxed pt-2">
+                  {exp.summary}
+                </p>
+                <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground pt-2">
+                  {exp.highlights.map((item, hIdx) => (
+                    <li key={hIdx} className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -1402,6 +1407,19 @@ interface CertItem {
 }
 
 const CERTIFICATES: CertItem[] = [
+  {
+    title: "Full Stack Web Development with Generative AI",
+    org: "Sheryians Coding School",
+    date: "Job-Ready AI-Powered Cohort 2.0",
+    image: "/certs/generative-ai.png",
+    badge: "AI Cohort 2.0",
+    skills: [
+      "Full-Stack Web Dev",
+      "Generative AI",
+      "MERN Architecture",
+      "AI-Powered Apps",
+    ],
+  },
   {
     title: "Designing Scalable RAG Pipelines",
     org: "Scaler Masterclass",
@@ -1865,7 +1883,7 @@ function About({ onOpenGallery }: { onOpenGallery: (index: number) => void }) {
                       Location
                     </span>
                     <span className="font-medium text-foreground mt-0.5 block">
-                      Bhatkal, Karnataka, India
+                      India
                     </span>
                   </div>
                   <div>
@@ -2100,41 +2118,139 @@ function TechnicalStrengths() {
    CONTACT SECTION (Clear Heading, Direct Information, Working Form)
    ────────────────────────────────────────────────────────────────────────── */
 function Contact({ onOpenCv }: { onOpenCv: () => void }) {
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "ok" | "err" | "nopass"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">(
+    "idle",
+  );
   const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current) return;
 
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      setStatus("nopass");
-      setTimeout(() => setStatus("idle"), 6000);
-      return;
-    }
+    const fd = new FormData(formRef.current);
+    const name = ((fd.get("name") as string) ?? "").trim();
+    const email = ((fd.get("email") as string) ?? "").trim();
+    const subject = ((fd.get("subject") as string) ?? "").trim();
+    const message = ((fd.get("message") as string) ?? "").trim();
 
     setStatus("sending");
-    const fd = new FormData(formRef.current);
+    let delivered = false;
+
+    // 1. Primary: Direct delivery via activated FormSubmit token (works on localhost AND internet deployment)
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
+      const response = await fetch(
+        "https://formsubmit.co/ajax/3c95efb5f408bdde11d8ea2320fb5c47",
         {
-          from_name: (fd.get("name") as string) ?? "",
-          from_email: (fd.get("email") as string) ?? "",
-          subject: (fd.get("subject") as string) ?? "",
-          message: (fd.get("message") as string) ?? "",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            _replyto: email,
+            _subject: subject
+              ? `[Portfolio] ${subject} — from ${name}`
+              : `[Portfolio Inquiry] from ${name}`,
+            message,
+            _template: "table",
+            _captcha: "false",
+          }),
         },
-        { publicKey: EMAILJS_PUBLIC_KEY },
       );
+
+      const result = await response.json().catch(() => null);
+      if (
+        response.ok &&
+        (result?.success === "true" ||
+          result?.success === true ||
+          result?.message?.includes("Activation") ||
+          result?.message?.includes("submitted successfully"))
+      ) {
+        delivered = true;
+      }
+    } catch (err) {
+      console.warn(
+        "FormSubmit token fetch failed, checking email fallback:",
+        err,
+      );
+    }
+
+    // 1b. Fallback direct to email if token was not reached
+    if (!delivered) {
+      try {
+        const response = await fetch(
+          "https://formsubmit.co/ajax/mohammedfahaman5@gmail.com",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              _replyto: email,
+              _subject: subject
+                ? `[Portfolio] ${subject} — from ${name}`
+                : `[Portfolio Inquiry] from ${name}`,
+              message,
+              _template: "table",
+              _captcha: "false",
+            }),
+          },
+        );
+
+        const result = await response.json().catch(() => null);
+        if (
+          response.ok &&
+          (result?.success === "true" ||
+            result?.success === true ||
+            result?.message?.includes("Activation") ||
+            result?.message?.includes("submitted successfully"))
+        ) {
+          delivered = true;
+        }
+      } catch (err) {
+        console.warn("FormSubmit email fallback failed:", err);
+      }
+    }
+
+    // 2. Secondary fallback: EmailJS browser delivery
+    if (
+      !delivered &&
+      EMAILJS_SERVICE_ID &&
+      EMAILJS_TEMPLATE_ID &&
+      EMAILJS_PUBLIC_KEY
+    ) {
+      try {
+        const res = await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+          },
+          { publicKey: EMAILJS_PUBLIC_KEY },
+        );
+        if (res.status === 200 || res.text === "OK") {
+          delivered = true;
+        }
+      } catch (err) {
+        console.warn("EmailJS fallback failed:", err);
+      }
+    }
+
+    if (delivered) {
       setStatus("ok");
-      formRef.current.reset();
-      setTimeout(() => setStatus("idle"), 5000);
-    } catch {
-      setStatus("err");
+      if (formRef.current) formRef.current.reset();
       setTimeout(() => setStatus("idle"), 6000);
+    } else {
+      setStatus("err");
+      setTimeout(() => setStatus("idle"), 8000);
     }
   };
 
@@ -2323,22 +2439,26 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-muted-foreground">
                   {status === "ok" && (
-                    <span className="text-primary font-medium">
-                      ✓ Message sent! I will reply within 24h.
+                    <span className="inline-flex items-center gap-1.5 text-primary font-medium">
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                      <span>
+                        Message delivered! I will respond within 24 hours.
+                      </span>
                     </span>
                   )}
                   {status === "err" && (
-                    <span className="text-red-500">
-                      Failed to send — please email directly.
-                    </span>
-                  )}
-                  {status === "nopass" && (
-                    <span className="text-amber-500">
-                      Email service not configured — please use direct email.
+                    <span className="inline-flex flex-wrap items-center gap-1.5 text-red-400">
+                      <span>Direct send failed. Reach me directly at</span>
+                      <a
+                        href="mailto:mohammedfahaman5@gmail.com"
+                        className="font-medium text-primary underline underline-offset-2 hover:opacity-80"
+                      >
+                        mohammedfahaman5@gmail.com
+                      </a>
                     </span>
                   )}
                   {status === "idle" && "Typical response time: under 24 hours"}
-                  {status === "sending" && "Transmitting message..."}
+                  {status === "sending" && "Transmitting message to inbox..."}
                 </span>
 
                 <button

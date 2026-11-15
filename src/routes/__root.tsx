@@ -161,8 +161,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             ],
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Bhatkal",
-              addressRegion: "Karnataka",
               addressCountry: "IN",
             },
           }),
