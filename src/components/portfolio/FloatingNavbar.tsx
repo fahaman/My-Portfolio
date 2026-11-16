@@ -118,7 +118,7 @@ export function FloatingNavbar({
                 loading="eager"
               />
             </div>
-            <span className="font-display text-sm font-semibold tracking-tight text-foreground whitespace-nowrap">
+            <span className="font-display text-xs sm:text-sm font-semibold tracking-tight text-foreground truncate max-w-[120px] sm:max-w-none">
               Mohammed Fahaman
             </span>
           </a>
@@ -165,7 +165,7 @@ export function FloatingNavbar({
           </nav>
 
           {/* Right Action Controls: Theme Toggle, CV button, and Reach Out */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Illustrated Moon/Sun Theme Toggle */}
             <IllustratedThemeToggle />
 

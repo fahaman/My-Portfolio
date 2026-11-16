@@ -308,10 +308,10 @@ function ProfileLightbox({
       <div className="absolute inset-0 cursor-zoom-out" onClick={onClose} />
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 grid h-10 w-10 place-items-center rounded-lg border border-border bg-card text-foreground transition hover:bg-card-elevated"
+        className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-lg border border-border bg-card text-foreground transition hover:bg-card-elevated cursor-pointer"
         aria-label="Close lightbox"
       >
-        <X className="h-5 w-5" />
+        <X className="h-4 w-4 sm:h-5 sm:w-5" />
       </button>
       <div className="relative z-10 flex max-h-[85vh] max-w-[95vw] items-center justify-center">
         <motion.img
@@ -321,7 +321,7 @@ function ProfileLightbox({
           transition={{ duration: 0.2 }}
           src={PROFILE_IMAGES[activeIndex]}
           alt={`Mohammed Fahaman - Photo ${activeIndex + 1}`}
-          className="max-h-[80vh] max-w-full rounded-xl object-contain border border-border shadow-2xl"
+          className="max-h-[75vh] sm:max-h-[80vh] max-w-full rounded-xl object-contain border border-border shadow-2xl"
         />
         <button
           onClick={(e) => {
@@ -330,20 +330,20 @@ function ProfileLightbox({
               (activeIndex - 1 + PROFILE_IMAGES.length) % PROFILE_IMAGES.length,
             );
           }}
-          className="absolute left-3 z-10 grid h-10 w-10 place-items-center rounded-lg border border-border bg-card/90 text-foreground backdrop-blur transition hover:bg-card"
+          className="absolute left-2 sm:left-3 z-10 grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-lg border border-border bg-card/90 text-foreground backdrop-blur transition hover:bg-card cursor-pointer"
           aria-label="Previous photo"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
         <button
           onClick={(e) => {
             e.stopPropagation();
             onChangeIndex((activeIndex + 1) % PROFILE_IMAGES.length);
           }}
-          className="absolute right-3 z-10 grid h-10 w-10 place-items-center rounded-lg border border-border bg-card/90 text-foreground backdrop-blur transition hover:bg-card"
+          className="absolute right-2 sm:right-3 z-10 grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-lg border border-border bg-card/90 text-foreground backdrop-blur transition hover:bg-card cursor-pointer"
           aria-label="Next photo"
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
       </div>
       <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
@@ -473,7 +473,7 @@ function Hero({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.08 }}
-              className="mt-6 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.1]"
+              className="mt-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.1] font-bold tracking-tight text-foreground text-balance"
             >
               Building digital products that{" "}
               <span className="italic font-normal text-primary">scale</span> and
@@ -498,11 +498,11 @@ function Hero({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.24 }}
-              className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
+              className="mt-8 flex flex-wrap items-center gap-2.5 sm:gap-4"
             >
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 w-full sm:w-auto"
               >
                 <span>View Projects</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -511,7 +511,7 @@ function Hero({
               <a
                 href="/Mohammed-Fahaman-Resume.pdf"
                 download="Mohammed-Fahaman-Resume.pdf"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-medium text-foreground transition-colors hover:border-primary flex-1 sm:flex-initial"
               >
                 <Download className="h-4 w-4 text-primary" />
                 <span>Download CV</span>
@@ -520,7 +520,7 @@ function Hero({
               <button
                 type="button"
                 onClick={onOpenCv}
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-foreground cursor-pointer flex-1 sm:flex-initial"
               >
                 <FileText className="h-4 w-4 text-primary" />
                 <span>Preview CV</span>
@@ -837,7 +837,7 @@ function Projects() {
 
               {/* Graphic / Visual Anchor */}
               <div className="lg:col-span-5">
-                <div className="aspect-[4/3] rounded-xl border border-border bg-card-elevated p-6 flex flex-col justify-between">
+                <div className="aspect-auto min-h-[220px] sm:aspect-[4/3] rounded-xl border border-border bg-card-elevated p-5 sm:p-6 flex flex-col justify-between">
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="font-mono">Architecture Spec</span>
                     <span className="text-emerald-500 font-medium">
@@ -1315,7 +1315,7 @@ function Education() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               <span>EDUCATION</span>
             </div>
-            <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            <h2 className="mt-4 font-display text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground text-balance">
               My academic{" "}
               <span className="text-primary font-bold">journey.</span>
             </h2>
@@ -1340,7 +1340,7 @@ function Education() {
                 </div>
 
                 {/* Milestone Card */}
-                <div className="flex-1 rounded-2xl border border-border/80 bg-card/75 p-6 sm:p-8 backdrop-blur-xs transition-all duration-300 hover:border-primary/50 hover:bg-card hover:shadow-xl group">
+                <div className="flex-1 rounded-2xl border border-border/80 bg-card/75 p-5 sm:p-8 backdrop-blur-xs transition-all duration-300 hover:border-primary/50 hover:bg-card hover:shadow-xl group">
                   {/* Top Row: Period, Degree, Institution, and Score Box */}
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -1933,26 +1933,28 @@ function About({ onOpenGallery }: { onOpenGallery: (index: number) => void }) {
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-border flex flex-wrap items-center gap-3 text-xs">
+                <div className="mt-4 pt-3 border-t border-border flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs">
                   <a
                     href="https://github.com/fahaman"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/80 px-3 py-1.5 font-medium text-foreground transition hover:border-primary hover:text-primary cursor-pointer"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/80 px-3 py-1.5 font-medium text-foreground transition hover:border-primary hover:text-primary cursor-pointer max-w-full"
                   >
-                    <Github className="h-3.5 w-3.5 text-primary" />
-                    <span>github.com/fahaman</span>
-                    <ArrowUpRight className="h-3 w-3 text-muted-foreground" />
+                    <Github className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span className="truncate">github.com/fahaman</span>
+                    <ArrowUpRight className="h-3 w-3 text-muted-foreground shrink-0" />
                   </a>
                   <a
                     href="https://linkedin.com/in/mohammed-fahaman"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/80 px-3 py-1.5 font-medium text-foreground transition hover:border-primary hover:text-primary cursor-pointer"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/80 px-3 py-1.5 font-medium text-foreground transition hover:border-primary hover:text-primary cursor-pointer max-w-full"
                   >
-                    <Linkedin className="h-3.5 w-3.5 text-primary" />
-                    <span>linkedin.com/in/mohammed-fahaman</span>
-                    <ArrowUpRight className="h-3 w-3 text-muted-foreground" />
+                    <Linkedin className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span className="truncate max-w-[200px] xs:max-w-none">
+                      linkedin.com/in/mohammed-fahaman
+                    </span>
+                    <ArrowUpRight className="h-3 w-3 text-muted-foreground shrink-0" />
                   </a>
                 </div>
               </div>
@@ -2324,14 +2326,14 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
             <div className="space-y-4 text-xs">
               <a
                 href="mailto:mohammedfahaman5@gmail.com"
-                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary"
+                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary overflow-hidden"
               >
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-muted-foreground text-[10px] uppercase">
                     Email
                   </div>
-                  <div className="font-mono text-foreground font-medium">
+                  <div className="font-mono text-foreground font-medium truncate">
                     mohammedfahaman5@gmail.com
                   </div>
                 </div>
@@ -2339,10 +2341,10 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
 
               <a
                 href="tel:+919108352988"
-                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary"
+                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary overflow-hidden"
               >
                 <Phone className="h-4 w-4 text-primary shrink-0" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-muted-foreground text-[10px] uppercase">
                     Phone / WhatsApp
                   </div>
@@ -2356,14 +2358,14 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
                 href="https://linkedin.com/in/mohammed-fahaman"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary"
+                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary overflow-hidden"
               >
                 <Linkedin className="h-4 w-4 text-primary shrink-0" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-muted-foreground text-[10px] uppercase">
                     LinkedIn
                   </div>
-                  <div className="text-foreground font-medium">
+                  <div className="text-foreground font-medium truncate">
                     linkedin.com/in/mohammed-fahaman
                   </div>
                 </div>
@@ -2373,25 +2375,25 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
                 href="https://github.com/fahaman"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary"
+                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary overflow-hidden"
               >
                 <Github className="h-4 w-4 text-primary shrink-0" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-muted-foreground text-[10px] uppercase">
                     GitHub
                   </div>
-                  <div className="text-foreground font-medium">
+                  <div className="text-foreground font-medium truncate">
                     github.com/fahaman
                   </div>
                 </div>
               </a>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap gap-2.5 sm:gap-3">
               <button
                 type="button"
                 onClick={onOpenCv}
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:border-primary cursor-pointer mr-3"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:border-primary cursor-pointer flex-1 sm:flex-initial"
               >
                 <FileText className="h-4 w-4 text-primary" />
                 Preview CV
@@ -2399,7 +2401,7 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               <a
                 href="/Mohammed-Fahaman-Resume.pdf"
                 download="Mohammed-Fahaman-Resume.pdf"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground hover:opacity-90 flex-1 sm:flex-initial"
               >
                 <Download className="h-4 w-4" />
                 Download PDF
@@ -2412,7 +2414,7 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
             <form
               ref={formRef}
               onSubmit={onSubmit}
-              className="rounded-xl border border-border bg-card p-6 sm:p-8"
+              className="rounded-xl border border-border bg-card p-5 sm:p-8"
             >
               <h3 className="font-display text-base font-semibold text-foreground">
                 Send a Message
@@ -2501,7 +2503,7 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-xs font-semibold text-primary-foreground transition hover:opacity-90 disabled:opacity-60 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-xs font-semibold text-primary-foreground transition hover:opacity-90 disabled:opacity-60 cursor-pointer w-full sm:w-auto"
                 >
                   <Send className="h-3.5 w-3.5" />
                   <span>Send Message</span>
