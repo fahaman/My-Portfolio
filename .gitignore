@@ -2,6 +2,7 @@
 node_modules/
 dist/
 .output/
+.vercel/
 
 # Environment variables — NEVER commit these
 .env

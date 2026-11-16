@@ -21,7 +21,9 @@ export default defineConfig(({ command }) => ({
     }),
     viteReact(),
     command === "build"
-      ? nitro({ defaultPreset: "cloudflare-module" })
+      ? nitro({
+          defaultPreset: process.env.VERCEL ? "vercel" : "cloudflare-module",
+        })
       : undefined,
   ].filter(Boolean),
 }));

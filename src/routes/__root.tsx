@@ -8,7 +8,13 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
+
+if (typeof window !== "undefined") {
+  window.addEventListener("vite:preloadError", () => {
+    window.location.reload();
+  });
+}
 
 import appCss from "../styles.css?url";
 
@@ -38,6 +44,37 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error("Application error boundary:", error);
   const router = useRouter();
 
+  useEffect(() => {
+    const message = error?.message || "";
+    const isChunkError =
+      message.includes("Failed to fetch dynamically imported module") ||
+      message.includes("Importing a module script failed") ||
+      message.includes("dynamically imported module");
+
+    if (isChunkError) {
+      const hasReloaded = sessionStorage.getItem("chunk_reload");
+      if (!hasReloaded) {
+        sessionStorage.setItem("chunk_reload", "true");
+        window.location.reload();
+      }
+    }
+  }, [error]);
+
+  const handleTryAgain = () => {
+    sessionStorage.removeItem("chunk_reload");
+    const message = error?.message || "";
+    if (
+      message.includes("Failed to fetch dynamically imported module") ||
+      message.includes("Importing a module script failed") ||
+      message.includes("dynamically imported module")
+    ) {
+      window.location.reload();
+    } else {
+      router.invalidate();
+      reset();
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 text-foreground">
       <div className="max-w-md text-center">
@@ -49,10 +86,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
+            onClick={handleTryAgain}
             className="inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition hover:opacity-90 cursor-pointer"
           >
             Try Again
