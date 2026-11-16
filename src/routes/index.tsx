@@ -706,20 +706,6 @@ const SUPPORTING_PROJECTS: ProjectData[] = [
 
 const ADDITIONAL_PROJECTS: ProjectData[] = [
   {
-    title: "LearnChart Trading Agent",
-    category: "Autonomous AI System",
-    year: "2025",
-    description:
-      "Autonomous trading bot utilizing Anthropic Claude 3.5 Sonnet to parse market structures and execute perpetual futures on Hyperliquid with strict programmatic risk parameters.",
-    highlights: [
-      "Anthropic Claude context reasoning",
-      "Hyperliquid API execution on Render",
-    ],
-    stack: ["Python", "Claude 3.5", "Hyperliquid API", "Render"],
-    liveUrl: "https://learnchart-trading-agent.onrender.com/",
-    githubUrl: "https://github.com/fahaman/LearnChart-Trading-Agent",
-  },
-  {
     title: "Employee Management System",
     category: "Enterprise HR Portal",
     year: "2024",
@@ -761,7 +747,7 @@ function Projects() {
               PORTFOLIO
             </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Selected Projects
+              Projects
             </h2>
             <p className="max-w-2xl text-base text-muted-foreground">
               A selection of applications demonstrating my approach to interface
@@ -1265,7 +1251,7 @@ const EDUCATION_ITEMS: EducationItem[] = [
     institution:
       "Anjuman Institute of Management and Computer Application • Bhatkal, Karnataka, India",
     scoreType: "CGPA",
-    scoreValue: "8.4 CGPA",
+    scoreValue: "8.51 CGPA",
     description:
       "Acquired a comprehensive understanding of core computer science, software engineering principles, and databases. Built multiple MERN stack applications, integrated APIs, and engaged in advanced practical projects in modern web development.",
     topics: [
@@ -2339,20 +2325,31 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
                 </div>
               </a>
 
-              <a
-                href="tel:+919108352988"
-                className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card transition hover:border-primary overflow-hidden"
-              >
+              <div className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card overflow-hidden">
                 <Phone className="h-4 w-4 text-primary shrink-0" />
                 <div className="min-w-0 flex-1">
                   <div className="text-muted-foreground text-[10px] uppercase">
                     Phone / WhatsApp
                   </div>
-                  <div className="font-mono text-foreground font-medium">
-                    +91 9108352988
+                  <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-foreground font-medium text-xs sm:text-sm">
+                    <a
+                      href="tel:+971564603088"
+                      className="transition hover:text-primary hover:underline underline-offset-4"
+                      title="Call or WhatsApp (Dubai, UAE)"
+                    >
+                      +971 56 460 3088
+                    </a>
+                    <span className="text-muted-foreground/50">/</span>
+                    <a
+                      href="tel:+919108352988"
+                      className="transition hover:text-primary hover:underline underline-offset-4"
+                      title="Call or WhatsApp (India)"
+                    >
+                      +91 9108352988
+                    </a>
                   </div>
                 </div>
-              </a>
+              </div>
 
               <a
                 href="https://linkedin.com/in/mohammed-fahaman"
