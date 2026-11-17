@@ -1153,6 +1153,7 @@ function Skills() {
 interface ExperienceItem {
   role: string;
   organization: string;
+  organizationUrl?: string;
   location: string;
   period: string;
   summary: string;
@@ -1163,7 +1164,9 @@ const EXPERIENCES: ExperienceItem[] = [
   {
     role: "Junior Full-Stack Web Developer",
     organization: "AtomNext!",
-    location: "Bhatkal, Karnataka, India",
+    organizationUrl:
+      "https://www.linkedin.com/company/info-atomnext?originalSubdomain=in",
+    location: "Karnataka, India",
     period: "Feb 2025 – July 2026",
     summary:
       "Contributed to full-stack web application development across the MERN stack, delivering responsive UI architectures and scalable backend services.",
@@ -1202,7 +1205,7 @@ function Experience() {
               WORK HISTORY
             </span>
             <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Professional Experience
+              Experience
             </h2>
             <p className="mt-2 max-w-2xl text-base text-muted-foreground">
               Practical engineering support, infrastructure management, and
@@ -1225,7 +1228,20 @@ function Experience() {
                   </span>
                 </div>
                 <p className="text-xs text-primary font-medium">
-                  {exp.organization} · {exp.location}
+                  {exp.organizationUrl ? (
+                    <a
+                      href={exp.organizationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-inherit hover:underline inline-flex items-center gap-1 transition-opacity hover:opacity-90"
+                    >
+                      <span>{exp.organization}</span>
+                      <ExternalLink className="h-3 w-3 inline opacity-70" />
+                    </a>
+                  ) : (
+                    exp.organization
+                  )}{" "}
+                  · {exp.location}
                 </p>
 
                 <p className="text-sm text-muted-foreground leading-relaxed pt-2">
