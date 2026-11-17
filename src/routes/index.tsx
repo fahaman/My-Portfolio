@@ -173,20 +173,20 @@ function CvModal({ isOpen, onClose }: CvModalProps) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+        className="relative flex h-[94vh] max-h-[94vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
       >
         {/* Header toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-card-elevated px-5 py-3">
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary/10 text-primary">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-card-elevated px-4 sm:px-5 py-3">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary/10 text-primary shrink-0">
               <FileText className="h-4 w-4" />
             </span>
-            <div>
-              <h3 className="font-display text-sm font-semibold text-foreground">
-                Mohammed-Fahaman-Resume.pdf
+            <div className="min-w-0">
+              <h3 className="font-display text-xs sm:text-sm font-semibold text-foreground truncate max-w-[180px] xs:max-w-[260px] sm:max-w-none">
+                Mohammed Fahaman _ Full-Stack Web Developer CV.pdf
               </h3>
-              <p className="text-xs text-muted-foreground">
-                Verified Full-Stack Web Developer &amp; MERN-Stack Developer CV
+              <p className="text-[11px] sm:text-xs text-muted-foreground truncate">
+                Junior Full-Stack Web Developer &amp; MERN-Stack Developer CV
               </p>
             </div>
           </div>
@@ -220,11 +220,12 @@ function CvModal({ isOpen, onClose }: CvModalProps) {
             {/* Direct download */}
             <a
               href="/Mohammed-Fahaman-Resume.pdf"
-              download="Mohammed-Fahaman-Resume.pdf"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground transition hover:opacity-90"
+              download="Mohammed Fahaman _ Full-Stack Web Developer CV.pdf"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition hover:opacity-90"
             >
               <Download className="h-3.5 w-3.5" />
-              <span>Download PDF</span>
+              <span className="hidden xs:inline">Download PDF</span>
+              <span className="xs:hidden">PDF</span>
             </a>
 
             {/* Close button */}
@@ -239,29 +240,31 @@ function CvModal({ isOpen, onClose }: CvModalProps) {
           </div>
         </div>
 
-        {/* Document view area */}
-        <div className="relative flex-1 overflow-auto bg-background p-4 sm:p-6 flex justify-center">
+        {/* Document view area - Top-anchored with natural vertical scroll to prevent top clipping */}
+        <div className="relative flex-1 overflow-y-auto overflow-x-auto bg-zinc-950/80 p-2 sm:p-6 flex justify-center items-start">
           <div
-            style={{ width: `${zoomLevel}%`, maxWidth: "100%" }}
-            className="flex flex-col items-center justify-center transition-all duration-200"
+            style={{ width: `${zoomLevel}%` }}
+            className="flex flex-col items-center transition-all duration-200 min-w-[280px] max-w-4xl"
           >
             <img
               src="/resume-preview.png"
               alt="Mohammed Fahaman Resume Preview"
-              className="w-full rounded-md border border-border shadow-md object-contain bg-white"
-              loading="lazy"
+              className="w-full h-auto rounded-md border border-border shadow-2xl object-contain bg-white block"
+              loading="eager"
             />
           </div>
         </div>
 
         {/* Footer toolbar */}
-        <div className="flex items-center justify-between border-t border-border bg-card-elevated px-5 py-2.5 text-xs text-muted-foreground">
-          <span>Complete Single-Page Professional Curriculum Vitae</span>
+        <div className="flex items-center justify-between border-t border-border bg-card-elevated px-4 sm:px-5 py-2.5 text-xs text-muted-foreground">
+          <span className="truncate pr-2">
+            Complete Single-Page Professional Curriculum Vitae
+          </span>
           <a
             href="/Mohammed-Fahaman-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-primary hover:underline"
+            className="inline-flex items-center gap-1 text-primary hover:underline shrink-0"
           >
             Open in new tab <ExternalLink className="h-3 w-3" />
           </a>
@@ -510,7 +513,7 @@ function Hero({
 
               <a
                 href="/Mohammed-Fahaman-Resume.pdf"
-                download="Mohammed-Fahaman-Resume.pdf"
+                download="Mohammed Fahaman _ Full-Stack Web Developer CV.pdf"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-medium text-foreground transition-colors hover:border-primary flex-1 sm:flex-initial"
               >
                 <Download className="h-4 w-4 text-primary" />
@@ -1157,6 +1160,20 @@ interface ExperienceItem {
 }
 
 const EXPERIENCES: ExperienceItem[] = [
+  {
+    role: "Junior Full-Stack Web Developer",
+    organization: "AtomNext!",
+    location: "Bhatkal, Karnataka, India",
+    period: "Feb 2025 – July 2026",
+    summary:
+      "Contributed to full-stack web application development across the MERN stack, delivering responsive UI architectures and scalable backend services.",
+    highlights: [
+      "Contributed to full-stack web application development, including responsive UI development and backend functionality.",
+      "Developed and integrated application features using React.js, JavaScript, TypeScript, Node.js, and Express.js.",
+      "Worked with RESTful APIs, frontend and backend integration, data handling, and application functionality.",
+      "Assisted with debugging, code improvements, and maintaining application usability, reliability, and maintainability.",
+    ],
+  },
   {
     role: "Technical Operations Support",
     organization: "INF NGO",
@@ -2397,7 +2414,7 @@ function Contact({ onOpenCv }: { onOpenCv: () => void }) {
               </button>
               <a
                 href="/Mohammed-Fahaman-Resume.pdf"
-                download="Mohammed-Fahaman-Resume.pdf"
+                download="Mohammed Fahaman _ Full-Stack Web Developer CV.pdf"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground hover:opacity-90 flex-1 sm:flex-initial"
               >
                 <Download className="h-4 w-4" />

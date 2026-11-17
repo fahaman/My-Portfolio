@@ -250,7 +250,7 @@ export function FloatingNavbar({
               </button>
               <a
                 href="/Mohammed-Fahaman-Resume.pdf"
-                download="Mohammed-Fahaman-Resume.pdf"
+                download="Mohammed Fahaman _ Full-Stack Web Developer CV.pdf"
                 className="flex-1 rounded-lg bg-primary py-2 text-center text-xs font-semibold text-primary-foreground hover:opacity-90"
               >
                 Download CV
